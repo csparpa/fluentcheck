@@ -9,6 +9,9 @@ setup(
     version='0.0.1',
     packages=find_packages(),
     include_package_data=True,
+    install_requires=[
+        'PyYAML==3.12,<4.0',
+    ],
     test_suite='tests',
     license='MIT License',
     description='Fluent assertions for Python values',
