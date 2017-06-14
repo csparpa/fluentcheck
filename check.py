@@ -1,26 +1,15 @@
 import re
 import json
 import yaml
+import types
 from xml.etree import ElementTree
 
-
-'''
-Assert(val).is_not_None().is_dict().is_not_list().is_not_tuple().is_not_set().is_not_object()
-Assert(val).not_contains(MyType1)
-Assert(val).not_contains_any_of(MyType1, MyType2)
-Assert(val).not_contains_strings()
-Assert(val).not_contains_numbers(MyType1, MyType2)
-Assert(val).is_not_of_type(MyType)
-Assert(val).is_of_type(MyType)
-Assert(val).is_module()
-Assert(val).is_package()
-'''
 
 class CheckError(Exception):
     pass
 
 
-class Check():
+class Check:
 
     NUMERIC_TYPES = (int, long, float, complex)
 
@@ -116,7 +105,7 @@ class Check():
             raise CheckError('{} is complex'.format(self._val))
 
     def is_positive(self):
-        self.is_not_complex()
+        self.is_number().is_not_complex()
         try:
             assert float(self._val) > 0.
             return self
@@ -124,7 +113,7 @@ class Check():
             raise CheckError('{} is non-positive'.format(self._val))
 
     def is_negative(self):
-        self.is_not_complex()
+        self.is_number().is_not_complex()
         try:
             assert float(self._val) < 0.
             return self
@@ -132,7 +121,7 @@ class Check():
             raise CheckError('{} is non-negative'.format(self._val))
 
     def is_zero(self):
-        self.is_not_complex()
+        self.is_number().is_not_complex()
         try:
             assert float(self._val) == 0.
             return self
@@ -140,6 +129,7 @@ class Check():
             raise CheckError('{} is non-zero'.format(self._val))
 
     def is_at_least(self, lower):
+        self.is_number()
         Check(lower).is_number()
         try:
             assert float(self._val) >= float(lower)
@@ -148,6 +138,7 @@ class Check():
             raise CheckError('{} is smaller than {}'.format(self._val, lower))
 
     def is_at_most(self, upper):
+        self.is_number()
         Check(upper).is_number()
         try:
             assert float(self._val) <= float(upper)
@@ -156,6 +147,7 @@ class Check():
             raise CheckError('{} is bigger than {}'.format(self._val, upper))
 
     def is_between(self, lower, upper):
+        self.is_number()
         Check(lower).is_number()
         Check(upper).is_number()
         self.is_at_least(lower).is_at_most(upper)
@@ -186,6 +178,7 @@ class Check():
             raise CheckError('{} does not contain numbers'.format(self._val))
 
     def not_contains_numbers(self):
+        self.is_string()
         try:
             assert not any(char.isdigit() for char in self._val)
             return self
@@ -201,6 +194,7 @@ class Check():
             raise CheckError('{} also contains numbers'.format(self._val))
 
     def contains_chars(self):
+        self.is_string()
         try:
             assert bool(re.search('[a-zA-Z]', self._val))
             return self
@@ -208,6 +202,7 @@ class Check():
             raise CheckError('{} does not contain chars'.format(self._val))
 
     def not_contains_chars(self):
+        self.is_string()
         try:
             assert not bool(re.search('[a-zA-Z]', self._val))
             return self
@@ -238,7 +233,7 @@ class Check():
         except AssertionError:
             raise CheckError('{} contains whitespaces'.format(self._val))
 
-    def contains(self, _char):
+    def contains_char(self, _char):
         self.is_string()
         try:
             assert _char in self._val
@@ -247,7 +242,7 @@ class Check():
             raise CheckError('{} does not contain char: {}'.format(self._val,
                                                                    _char))
 
-    def not_contains(self, _char):
+    def not_contains_char(self, _char):
         self.is_string()
         try:
             assert not _char in self._val
@@ -278,6 +273,14 @@ class Check():
             return self
         except AssertionError:
             raise CheckError('{} is not long {}'.format(self._val, n_chars))
+
+    def has_not_length(self, n_chars):
+        self.is_string()
+        try:
+            assert len(self._val) != n_chars
+            return self
+        except AssertionError:
+            raise CheckError('{} is long {}'.format(self._val, n_chars))
 
     def is_json(self):
         self.is_string()
@@ -327,7 +330,7 @@ class Check():
         except ValueError:
             return self
 
-    # multi-type methods
+    # Sequences
 
     def is_empty(self):
         try:
@@ -343,6 +346,104 @@ class Check():
         except:
             raise CheckError('{} is empty'.format(self._val))
 
-if __name__ == '__main__':
-    val = 's'
-    Check(val).is_not_json().is_not_empty()
+    def is_iterable(self):
+        try:
+            iter(self._val)
+            return self
+        except TypeError:
+            raise CheckError('{} is not iterable'.format(self._val))
+
+    def is_not_iterable(self):
+        try:
+            iter(self._val)
+            raise CheckError('{} is iterable'.format(self._val))
+        except TypeError:
+            return self
+
+    # Dictionaries
+    def is_dict(self):
+        try:
+            assert isinstance(self._val, dict)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a dict'.format(self._val))
+
+    def is_not_dict(self):
+        try:
+            assert not isinstance(self._val, dict)
+            return self
+        except AssertionError:
+            raise CheckError('{} is a dict'.format(self._val))
+
+    def has_keys(self, *args):
+        self.is_dict()
+        cur_key = ''
+        try:
+            for key in args:
+                cur_key = key
+                assert key in self._val
+            return self
+        except AssertionError:
+            raise CheckError('{} does not contain key: {}'.format(self._val,
+                                                                  cur_key))
+
+    def has_not_keys(self, *args):
+        self.is_dict()
+        cur_key = ''
+        try:
+            for key in args:
+                cur_key = key
+                assert not key in self._val
+            return self
+        except AssertionError:
+            raise CheckError('{} does contains key: {}'.format(self._val,
+                                                               cur_key))
+
+    # Custom types
+
+    def is_of_type(self, _type):
+        try:
+            assert isinstance(self._val, _type)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not of type {}'.format(self._val,
+                                                           _type))
+
+    def is_not_of_type(self, _type):
+        try:
+            assert not isinstance(self._val, _type)
+            return self
+        except AssertionError:
+            raise CheckError('{} is of type {}'.format(self._val,
+                                                       _type))
+    # Modules
+
+    def is_module(self):
+        try:
+            assert isinstance(self._val, types.ModuleType)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a module'.format(self._val))
+
+    def is_not_module(self):
+        try:
+            assert not isinstance(self._val, types.ModuleType)
+            return self
+        except AssertionError:
+            raise CheckError('{} is a module'.format(self._val))
+
+    # Functions
+
+    def is_runnable(self):
+        try:
+            assert isinstance(self._val, types.FunctionType)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not runnable'.format(self._val))
+
+    def is_not_runnable(self):
+        try:
+            assert not isinstance(self._val, types.FunctionType)
+            return self
+        except AssertionError:
+            raise CheckError('{} is runnable'.format(self._val))

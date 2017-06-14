@@ -92,6 +92,14 @@ is_not_dict()
 has_keys(*args)
 has_not_keys(*args)
 
+# Functions
+is_runnable()
+is_not_runnable()
+
+# Modules
+is_module()
+is_not_module()
+
 # Custom types
 is_of_type(_type)
 is_not_of_type(_type)
