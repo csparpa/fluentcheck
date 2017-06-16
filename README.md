@@ -1,5 +1,5 @@
 # check
-_Fluent assertions for Python values_
+_Fluent assertions for Python_
 
 Bored of using `assert` multiple times to check types, intervals, etc. on data passed as input to your Python functions?
 This generates a lot of boilerplate code. __check__ helps you reducing the lines of code providing you a human-friendly and fluent way to make assertions.
