@@ -399,6 +399,22 @@ class Check:
             raise CheckError('{} does contains key: {}'.format(self._val,
                                                                cur_key))
 
+    # Types hierarchy
+
+    def is_subtype_of(self, _type):
+        try:
+            assert issubclass(self._val.__class__, _type)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not subtype of {}'.format(self._val, _type))
+
+    def is_not_subtype_of(self, _type):
+        try:
+            assert issubclass(self._val.__class__, _type)
+            raise CheckError('{} is subtype of {}'.format(self._val, _type))
+        except AssertionError:
+            return self
+
     # Custom types
 
     def is_of_type(self, _type):
@@ -447,3 +463,19 @@ class Check:
             return self
         except AssertionError:
             raise CheckError('{} is runnable'.format(self._val))
+
+    # Any type
+
+    def equals(self, expected):
+        try:
+            assert self._val == expected
+            return self
+        except AssertionError:
+            raise CheckError('{} does not equal {}'.format(self._val, expected))
+
+    def not_equals(self, expected):
+        try:
+            assert self._val == expected
+            raise CheckError('{} equals {}'.format(self._val, expected))
+        except AssertionError:
+            return self

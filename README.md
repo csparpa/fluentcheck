@@ -1,7 +1,7 @@
 # check
 _Fluent assertions for Python values_
 
-Bored of using `assert` multiple times to check types, intervals, etc. for the data fed to your Python functions?
+Bored of using `assert` multiple times to check types, intervals, etc. on data passed as input to your Python functions?
 This generates a lot of boilerplate code. __check__ helps you reducing the lines of code providing you a human-friendly and fluent way to make assertions.
 
 Instead of:
@@ -26,10 +26,27 @@ def my_function(n, obj):
 ```
 
 
+...of course __check__ can also be used as an assertion framework in tests.
+
+
 ## Installation
 ```shell
 python2 setup.py install
 ```
+
+## Usage
+Simply instantiate the `Check` wrapper around the Python object you want to
+check out, then fluently append assertions like this:
+
+```python
+from check import Check
+
+Check(my_value).assertion1().assertion2().assertion3() # and so on
+```
+
+If the order of assertions matters to your overall goal, then take care of it.
+
+What if an assertion fails? A `CheckError` is issued: just catch it! 
 
 
 ## What can I actually check with it?
@@ -100,9 +117,18 @@ is_not_runnable()
 is_module()
 is_not_module()
 
+
+# Type hierarchy
+is_subtype_of(_type)
+is_not_subtype_of(_type)
+
 # Custom types
 is_of_type(_type)
 is_not_of_type(_type)
+
+# Any type
+equals(expected)
+not_equals(expected)
 
 # ...
 ```
