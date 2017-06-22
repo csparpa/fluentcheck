@@ -156,6 +156,36 @@ class Check:
         self.is_at_least(lower).is_at_most(upper)
         return self
 
+    # Sequences
+
+    def is_empty(self):
+        try:
+            assert len(self._val) == 0
+            return self
+        except:
+            raise CheckError('{} is not empty'.format(self._val))
+
+    def is_not_empty(self):
+        try:
+            assert len(self._val) != 0
+            return self
+        except:
+            raise CheckError('{} is empty'.format(self._val))
+
+    def is_iterable(self):
+        try:
+            iter(self._val)
+            return self
+        except TypeError:
+            raise CheckError('{} is not iterable'.format(self._val))
+
+    def is_not_iterable(self):
+        try:
+            iter(self._val)
+            raise CheckError('{} is iterable'.format(self._val))
+        except TypeError:
+            return self
+
     # Strings
 
     def is_string(self):
@@ -285,6 +315,84 @@ class Check:
         except AssertionError:
             raise CheckError('{} is long {}'.format(self._val, n_chars))
 
+    def is_lowercase(self):
+        self.is_string()
+        if self.is_empty():
+            return self
+        try:
+            assert all([c.islower() for c in self._val])
+            return self
+        except AssertionError:
+            raise CheckError('{} is not lowercase'.format(self._val))
+
+    def is_not_lowercase(self):
+        self.is_string()
+        if self.is_empty():
+            return self
+        try:
+            assert any([not c.islower() for c in self._val])
+            return self
+        except AssertionError:
+            raise CheckError('{} is lowercase'.format(self._val))
+
+    def is_uppercase(self):
+        self.is_string()
+        if self.is_empty():
+            return self
+        try:
+            assert all([c.isupper() for c in self._val])
+            return self
+        except AssertionError:
+            raise CheckError('{} is not uppercase'.format(self._val))
+
+    def is_not_uppercase(self):
+        self.is_string()
+        if self.is_empty():
+            return self
+        try:
+            assert any([not c.isupper() for c in self._val])
+            return self
+        except AssertionError:
+            raise CheckError('{} is uppercase'.format(self._val))
+
+    def is_snakecase(self):
+        self.is_string()
+        if self.is_empty():
+            return self
+        try:
+            tokens = self._val.split('_')
+            assert len(tokens) > 1
+            assert not any([' ' in t for t in tokens])
+            return self
+        except AssertionError:
+            raise CheckError('{} is not snakecase'.format(self._val))
+
+    def is_not_snakecase(self):
+        self.is_string()
+        if self.is_empty():
+            return self
+        try:
+            self.is_snakecase()
+            raise CheckError('{} is snakecase'.format(self._val))
+        except AssertionError:
+            return self
+
+    def is_camelcase(self):
+        self.is_string()
+        try:
+            assert (self._val != self._val.lower() and self._val != self._val.upper())
+            return self
+        except AssertionError:
+            raise CheckError('{} is not camelcase'.format(self._val))
+
+    def is_not_camelcase(self):
+        self.is_string()
+        try:
+            assert not (self._val != self._val.lower() and self._val != self._val.upper())
+            return self
+        except AssertionError:
+            raise CheckError('{} is camelcase'.format(self._val))
+
     def is_json(self):
         self.is_string()
         try:
@@ -396,36 +504,6 @@ class Check:
         except AssertionError:
             raise CheckError('{} has the same truth of {}'.format(self._val,
                                                                   value))
-
-    # Sequences
-
-    def is_empty(self):
-        try:
-            assert len(self._val) == 0
-            return self
-        except:
-            raise CheckError('{} is not empty'.format(self._val))
-
-    def is_not_empty(self):
-        try:
-            assert len(self._val) != 0
-            return self
-        except:
-            raise CheckError('{} is empty'.format(self._val))
-
-    def is_iterable(self):
-        try:
-            iter(self._val)
-            return self
-        except TypeError:
-            raise CheckError('{} is not iterable'.format(self._val))
-
-    def is_not_iterable(self):
-        try:
-            iter(self._val)
-            raise CheckError('{} is iterable'.format(self._val))
-        except TypeError:
-            return self
 
     # Dictionaries
     def is_dict(self):
