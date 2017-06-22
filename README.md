@@ -97,6 +97,20 @@ is_not_yaml()
 is_xml()
 is_not_xml()
 
+# Booleans
+is_boolean()
+is_not_boolean()
+is_true()
+is_not_true()
+is_truthy()
+is_not_truthy()
+is_false()
+is_not_false()
+is_falsy()
+is_not_falsy()
+has_same_truth_of(val)
+has_opposite_truth_of(val)
+
 # Sequences
 is_empty()
 is_not_empty()
