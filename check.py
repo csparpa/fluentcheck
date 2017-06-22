@@ -455,6 +455,25 @@ class Check:
         except ValueError:
             return self
 
+    def matches(self, regex):
+        self.is_string()
+        try:
+            pattern = re.compile(regex)
+            assert pattern.match(self._val) is not None
+            return self
+        except AssertionError:
+            raise CheckError('{} does not match pattern: {}'.format(self._val,
+                                                                    regex))
+
+    def not_matches(self, regex):
+        self.is_string()
+        try:
+            pattern = re.compile(regex)
+            assert not pattern.match(self._val) is not None
+            return self
+        except AssertionError:
+            raise CheckError('{} matches pattern: {}'.format(self._val, regex))
+
     # Booleans
     def is_boolean(self):
         try:

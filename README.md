@@ -106,6 +106,8 @@ is_yaml()
 is_not_yaml()
 is_xml()
 is_not_xml()
+matches(regex)
+not_matches(regex)
 
 # Booleans
 is_boolean()
