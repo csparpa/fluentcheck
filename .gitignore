@@ -1,0 +1,7 @@
+.cache/
+.idea/
+__pycache__/
+check.egg-info/
+check.pyc
+
+
