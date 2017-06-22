@@ -393,6 +393,20 @@ class Check:
         except AssertionError:
             raise CheckError('{} is camelcase'.format(self._val))
 
+    def is_unicode(self):
+        try:
+            assert isinstance(self._val, unicode)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not Unicode'.format(self._val))
+
+    def is_not_unicode(self):
+        try:
+            assert not isinstance(self._val, unicode)
+            return self
+        except AssertionError:
+            raise CheckError('{} is Unicode'.format(self._val))
+
     def is_json(self):
         self.is_string()
         try:
