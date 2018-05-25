@@ -31,6 +31,11 @@ def my_function(n, obj):
 
 ## Installation
 ```shell
+pip2 install fluentcheck
+```
+or 
+
+```shell
 python2 setup.py install
 ```
 
