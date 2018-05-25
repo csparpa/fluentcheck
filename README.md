@@ -64,6 +64,8 @@ is_long()
 is_not_long()
 is_float()
 is_not_float()
+is_real()
+is_not_real()
 is_complex()
 is_not_complex()
 is_positive()
@@ -72,6 +74,22 @@ is_zero()
 is_at_least(lower)
 is_at_most(upper)
 is_between(lowerupper)
+
+# Sequences
+is_empty()
+is_not_empty()
+is_iterable()
+is_not_iterable()
+is_couple()
+is_triplet()
+is_nuple(dimension)
+has_dimensionality(dimensionality)
+
+# Tuples
+is_tuple()
+
+# Lists
+is_list()
 
 # Strings
 is_string()
@@ -123,12 +141,6 @@ is_not_falsy()
 has_same_truth_of(val)
 has_opposite_truth_of(val)
 
-# Sequences
-is_empty()
-is_not_empty()
-is_iterable()
-is_not_iterable()
-
 # Dictionaries
 is_dict()
 is_not_dict()
@@ -156,5 +168,50 @@ is_not_of_type(_type)
 equals(expected)
 not_equals(expected)
 
-# ...
+# Geographic coords
+is_latitude()
+is_longitude()
+is_azimuth()
+is_geopoint()
+
+```
+
+## Coming soon
+
+```python
+# Dates
+is_today()
+is_not_today()
+is_yesterday()
+is_not_yesterday()
+is_tomorrow()
+is_not_tomorrow()
+is_weekend()
+is_not_weekend()
+is_this_month()
+is_not_this_month()
+is_previous_month()
+is_not_previous_month()
+is_next_month()
+is_not_next_month()
+is_this_year()
+is_not_this_year()
+is_last_year()
+is_not_last_year()
+is_next_year()
+is_not_next_year()
+is_leap_year()
+is_not_leap_year()
+is_this_century()
+is_not_this_century()
+is_before(date)
+is_not_before(date)
+is_after(date)
+is_not_after(date)
+is_between_dates(lower, upper)
+is_not_between_dates(lower, upper)
+is_timezone_aware()
+is_not_timezone_aware()
+has_timezone(tz)
+has_not_timezone(tz)
 ```

@@ -93,6 +93,22 @@ class Check:
         except AssertionError:
             raise CheckError('{} is float'.format(self._val))
 
+    def is_real(self):
+        self.is_number()
+        try:
+            assert not isinstance(self._val, complex)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not real'.format(self._val))
+
+    def is_not_real(self):
+        self.is_number()
+        try:
+            assert isinstance(self._val, complex)
+            return self
+        except AssertionError:
+            raise CheckError('{} is real'.format(self._val))
+
     def is_complex(self):
         try:
             assert isinstance(self._val, complex)
@@ -185,6 +201,62 @@ class Check:
             raise CheckError('{} is iterable'.format(self._val))
         except TypeError:
             return self
+
+    def is_couple(self):
+        self.is_iterable()
+        try:
+            assert len(self._val) == 2
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a sequence of 2 items'.format(self._val))
+
+    def is_triplet(self):
+        self.is_iterable()
+        try:
+            assert len(self._val) == 3
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a sequence of 3 items'.format(self._val))
+
+    def is_nuple(self, dimension):
+        self.is_iterable()
+        try:
+            assert len(self._val) == dimension
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a sequence of {} items'.format(self._val, dimension))
+
+    def has_dimensionality(self, dimensionality):
+        self.is_not_string()
+
+        def get_dimensionality(item):
+            try:
+                iter(item)
+            except TypeError:
+                return 0
+            return 1 + get_dimensionality(item[0])
+        actual_dimensionality = get_dimensionality(self._val)
+        if actual_dimensionality == dimensionality:
+            return self
+        else:
+            raise CheckError('{} has actual dimensionality of {}, not {}'.format(
+                self._val, actual_dimensionality, dimensionality))
+
+    # Tuples
+    def is_tuple(self):
+        try:
+            assert isinstance(self._val, tuple)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a tuple'.format(self._val))
+
+    # List
+    def is_list(self):
+        try:
+            assert isinstance(self._val, list)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a list'.format(self._val))
 
     # Strings
 
@@ -299,21 +371,21 @@ class Check:
         except AssertionError:
             raise CheckError('{} is shorter than {}'.format(self._val, n_chars))
 
-    def has_length(self, n_chars):
+    def has_length(self, n_items):
         self.is_string()
         try:
-            assert len(self._val) == n_chars
+            assert len(self._val) == n_items
             return self
         except AssertionError:
-            raise CheckError('{} is not long {}'.format(self._val, n_chars))
+            raise CheckError('{} is not long {}'.format(self._val, n_items))
 
-    def has_not_length(self, n_chars):
+    def has_not_length(self, n_items):
         self.is_string()
         try:
-            assert len(self._val) != n_chars
+            assert len(self._val) != n_items
             return self
         except AssertionError:
-            raise CheckError('{} is long {}'.format(self._val, n_chars))
+            raise CheckError('{} is long {}'.format(self._val, n_items))
 
     def is_lowercase(self):
         self.is_string()
@@ -657,3 +729,37 @@ class Check:
             raise CheckError('{} equals {}'.format(self._val, expected))
         except AssertionError:
             return self
+
+    # Geographic coords
+
+    def is_latitude(self):
+        self.is_real()
+        try:
+            self.is_between(-90.0, 90.0)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a valid latitude'.format(self._val))
+
+    def is_longitude(self):
+        self.is_real()
+        try:
+            self.is_between(-180.0, 180.0)
+            return self
+        except AssertionError:
+            raise CheckError('{} is not a valid longitude'.format(self._val))
+
+    def is_azimuth(self):
+        try:
+            self.is_number().is_positive()
+        except:
+            raise CheckError('{} is not a valid azimuth'.format(self._val))
+
+    def is_geopoint(self):
+        self.is_couple()
+        try:
+            first = Check(self._val[0])
+            first.is_long()
+            second = Check(self._val[1])
+            second.is_latitude()
+        except AssertionError:
+            raise CheckError('{} is not a valid geographic point'.format(self._val))

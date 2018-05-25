@@ -12,7 +12,6 @@ setup(
     install_requires=[
         'PyYAML==3.12,<4.0',
     ],
-    test_suite='tests',
     license='MIT License',
     description='Fluent assertions for Python values',
     url='https://github.com/csparpa/check',
@@ -26,4 +25,5 @@ setup(
       "Development Status :: 3 - Alpha",
       "Intended Audience :: Developers",
       "Topic :: Software Development :: Libraries"],
+    keywords='check python fluent assertion test'
 )
