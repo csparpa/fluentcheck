@@ -16,8 +16,9 @@ class Check:
     def __init__(self, value):
         self._val = value
 
-    def __repr__(self):
-        return 'Value to be asserted: {}'.format(self._val)
+    @property
+    def value(self):
+        return self._val
 
     # Nonethiness
 
