@@ -1,8 +1,8 @@
-# check
+# fluentcheck
 _Fluent assertions for Python_
 
 Bored of using `assert` multiple times to check types, intervals, etc. on data passed as input to your Python functions?
-This generates a lot of boilerplate code. __check__ helps you reducing the lines of code providing you a human-friendly and fluent way to make assertions.
+This generates a lot of boilerplate code. __fluentcheck__ helps you reducing the lines of code providing you a human-friendly and fluent way to make assertions.
 
 Instead of:
 
@@ -18,7 +18,7 @@ def my_function(n, obj):
 just:
 
 ```python
-from check import Check
+from fuentcheck import Check
 
 def my_function(n, obj):
     Check(n).is_not_None().is_float().is_between(0., 1.)
@@ -44,14 +44,14 @@ Simply instantiate the `Check` wrapper around the Python object you want to
 check out, then fluently append assertions like this:
 
 ```python
-from check import Check
+from fluentcheck import Check
 
 Check(my_value).assertion1().assertion2().assertion3() # and so on
 ```
 
 If the order of assertions matters to your overall goal, then take care of it.
 
-What if an assertion fails? A `CheckError` is issued: just catch it! 
+What if an assertion fails? A `CheckError` is raised: just catch it! 
 
 
 ## What can I actually check with it?
