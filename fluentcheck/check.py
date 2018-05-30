@@ -5,13 +5,16 @@ import types
 from xml.etree import ElementTree
 
 
-class CheckError(Exception):
+class CheckError(AssertionError):
     pass
 
 
 class Check:
 
-    NUMERIC_TYPES = (int, long, float, complex)
+    try:  # Python 2.x
+        NUMERIC_TYPES = (int, long, float, complex)
+    except NameError:  # Python 3.x
+        NUMERIC_TYPES = (int, float, complex)
 
     def __init__(self, value):
         self._val = value

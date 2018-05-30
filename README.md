@@ -184,6 +184,13 @@ is_geopoint()
 ## Coming soon
 
 ```python
+
+# UUIDs
+is_uuid1()
+is_not_uuid1()
+is_uuid4()
+is_not_uuid4()
+
 # Dates
 is_today()
 is_not_today()
@@ -219,4 +226,10 @@ is_timezone_aware()
 is_not_timezone_aware()
 has_timezone(tz)
 has_not_timezone(tz)
+
+# Check against a custom rule (lambda)
+conforms_to(func)
+not_conforms_to(func)
+
+
 ```
