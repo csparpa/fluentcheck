@@ -75,6 +75,8 @@ class Check:
             return self
         except AssertionError:
             raise CheckError('{} is not long'.format(self._val))
+        except NameError:  # Python3
+            raise CheckError("Python3 does not support long numeric type")
 
     def is_not_long(self):
         try:
@@ -82,6 +84,8 @@ class Check:
             return self
         except AssertionError:
             raise CheckError('{} is long'.format(self._val))
+        except NameError:  # Python3
+            raise CheckError("Python3 does not support long numeric type")
 
     def is_float(self):
         try:

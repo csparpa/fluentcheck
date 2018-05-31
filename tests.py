@@ -117,3 +117,41 @@ class TestCheck(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
+
+    def test_is_long(self):
+        # check what Python version we're running
+        try:
+            val = long(123)
+            res = Check(val).is_long()
+            self.assertIsInstance(res, Check)
+
+            try:
+                Check('not-a-number').is_long()
+                self.fail()
+            except CheckError:
+                pass
+        except NameError:  # it's Python3
+            try:
+                Check(123).is_long()
+                self.fail()
+            except CheckError:
+                pass
+
+    def test_is_not_long(self):
+        try:
+            res = Check(123).is_not_long()
+            self.assertIsInstance(res, Check)
+
+            try:
+                val = long(123)
+                Check(val).is_not_long()
+                self.fail()
+            except CheckError:  # it's Python3
+                pass
+        except CheckError:
+            a=1
+            try:
+                Check(123).is_not_long()
+                self.fail()
+            except CheckError:
+                pass

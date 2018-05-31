@@ -26,21 +26,21 @@ def my_function(n, obj):
 ```
 
 
-...of course __check__ can also be used as an assertion framework in tests.
+...of course __fluentcheck__ can also be used as an _assertion framework in tests_.
 
 
 ## Installation
 ```shell
-pip2 install fluentcheck
+pip install fluentcheck
 ```
 or 
 
 ```shell
-python2 setup.py install
+python setup.py install
 ```
 
 ## Usage
-Simply instantiate the `Check` wrapper around the Python object you want to
+Simply instantiate the `Check` wrapper around the Python value you want to
 check out, then fluently append assertions like this:
 
 ```python
@@ -49,7 +49,7 @@ from fluentcheck import Check
 Check(my_value).assertion1().assertion2().assertion3() # and so on
 ```
 
-If the order of assertions matters to your overall goal, then take care of it.
+_If the order of assertions matters to your overall goal, then take care of it!_
 
 What if an assertion fails? A `CheckError` is raised: just catch it! 
 
@@ -192,6 +192,14 @@ is_uuid4()
 is_not_uuid4()
 
 # Dates
+is_date()
+is_not_date()
+is_datetime()
+is_not_datetime()
+is_before(_datetime)
+is_not_before(_datetime)
+is_after(_datetime)
+is_not_after(_datetime)
 is_today()
 is_not_today()
 is_yesterday()
@@ -227,9 +235,31 @@ is_not_timezone_aware()
 has_timezone(tz)
 has_not_timezone(tz)
 
+# Sets
+is_set()
+is_not_set()
+is_subset_of(_set)
+is_not_subset_of(_set)
+intersects(_set)
+not_intersects(_set)
+
 # Check against a custom rule (lambda)
 conforms_to(func)
 not_conforms_to(func)
+
+# Sequences
+is_sorted(rule=func)
+is_not_sorted(rule=func)
+is_subsequence_of(subseq)
+is_not_subsequence_of(subseq)
+has_duplicates()
+has_not_duplicates()
+
+# Objects
+contains(element)
+not_contains(element)
+has_attribute(_attr)
+has_not_attribute(_attr)
 
 
 ```
