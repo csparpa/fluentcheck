@@ -137,7 +137,15 @@ class Check:
             assert float(self._val) > 0.
             return self
         except AssertionError:
-            raise CheckError('{} is non-positive'.format(self._val))
+            raise CheckError('{} is zero or negative'.format(self._val))
+
+    def is_not_positive(self):
+        self.is_number().is_not_complex()
+        try:
+            assert float(self._val) <= 0
+            return self
+        except AssertionError:
+            raise CheckError('{} is positive'.format(self._val))
 
     def is_negative(self):
         self.is_number().is_not_complex()
@@ -145,7 +153,15 @@ class Check:
             assert float(self._val) < 0.
             return self
         except AssertionError:
-            raise CheckError('{} is non-negative'.format(self._val))
+            raise CheckError('{} is zero or positive'.format(self._val))
+
+    def is_not_negative(self):
+        self.is_number().is_not_complex()
+        try:
+            assert float(self._val) >= 0
+            return self
+        except AssertionError:
+            raise CheckError('{} is negative'.format(self._val))
 
     def is_zero(self):
         self.is_number().is_not_complex()
