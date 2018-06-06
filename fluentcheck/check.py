@@ -132,7 +132,7 @@ class Check:
             raise CheckError('{} is complex'.format(self._val))
 
     def is_positive(self):
-        self.is_number().is_not_complex()
+        self.is_real()
         try:
             assert float(self._val) > 0.
             return self
@@ -140,7 +140,7 @@ class Check:
             raise CheckError('{} is zero or negative'.format(self._val))
 
     def is_not_positive(self):
-        self.is_number().is_not_complex()
+        self.is_real()
         try:
             assert float(self._val) <= 0
             return self
@@ -148,7 +148,7 @@ class Check:
             raise CheckError('{} is positive'.format(self._val))
 
     def is_negative(self):
-        self.is_number().is_not_complex()
+        self.is_real()
         try:
             assert float(self._val) < 0.
             return self
@@ -156,7 +156,7 @@ class Check:
             raise CheckError('{} is zero or positive'.format(self._val))
 
     def is_not_negative(self):
-        self.is_number().is_not_complex()
+        self.is_real()
         try:
             assert float(self._val) >= 0
             return self
@@ -164,16 +164,24 @@ class Check:
             raise CheckError('{} is negative'.format(self._val))
 
     def is_zero(self):
-        self.is_number().is_not_complex()
+        self.is_real()
         try:
             assert float(self._val) == 0.
             return self
         except AssertionError:
             raise CheckError('{} is non-zero'.format(self._val))
 
+    def is_not_zero(self):
+        self.is_real()
+        try:
+            assert float(self._val) != 0.
+            return self
+        except AssertionError:
+            raise CheckError('{} is non-zero'.format(self._val))
+
     def is_at_least(self, lower):
-        self.is_number()
-        Check(lower).is_number()
+        self.is_real()
+        Check(lower).is_real()
         try:
             assert float(self._val) >= float(lower)
             return self
@@ -181,8 +189,8 @@ class Check:
             raise CheckError('{} is smaller than {}'.format(self._val, lower))
 
     def is_at_most(self, upper):
-        self.is_number()
-        Check(upper).is_number()
+        self.is_real()
+        Check(upper).is_real()
         try:
             assert float(self._val) <= float(upper)
             return self
@@ -190,11 +198,22 @@ class Check:
             raise CheckError('{} is bigger than {}'.format(self._val, upper))
 
     def is_between(self, lower, upper):
-        self.is_number()
-        Check(lower).is_number()
-        Check(upper).is_number()
+        self.is_real()
+        Check(lower).is_real()
+        Check(upper).is_real()
         self.is_at_least(lower).is_at_most(upper)
         return self
+
+    def is_not_between(self, lower, upper):
+        self.is_real()
+        Check(lower).is_real()
+        Check(upper).is_real()
+        try:
+            assert float(self._val) <= lower or float(self._val) >= upper
+            return self
+        except AssertionError:
+            raise CheckError('{} is between {} and {}'.format(self._val, lower, upper))
+
 
     # Sequences
 
