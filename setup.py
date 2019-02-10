@@ -10,7 +10,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'PyYAML==3.12,<4.0',
+        'pyyaml>=4.2b1',
     ],
     license='MIT License',
     description='Fluent assertions for Python values',

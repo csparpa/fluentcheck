@@ -278,7 +278,7 @@ class TestCheck(unittest.TestCase):
         except CheckError:
             pass
 
-    def test_zero(self):
+    def test_is_zero(self):
         res = Check(0).is_zero()
         self.assertIsInstance(res, Check)
         try:
