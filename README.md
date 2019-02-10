@@ -239,6 +239,10 @@ is_not_timezone_aware()
 has_timezone(tz)
 has_not_timezone(tz)
 
+# Geographic coords
+is_plus_code()  # https://plus.codes/
+is_not_plus_code()
+
 # Sets
 is_set()
 is_not_set()
