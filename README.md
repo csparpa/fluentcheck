@@ -183,18 +183,17 @@ is_longitude()
 is_azimuth()
 is_geopoint()
 
-```
-
-## Coming soon
-
-```python
-
 # UUIDs
 is_uuid1()
 is_not_uuid1()
 is_uuid4()
 is_not_uuid4()
 
+```
+
+## Coming soon
+
+```python
 # Dates
 is_date()
 is_not_date()
