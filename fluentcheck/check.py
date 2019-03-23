@@ -514,7 +514,7 @@ class Check:
             assert isinstance(self._val, unicode)
             return self
         except NameError:  # Python3
-            raise CheckError("Python3 does not support unicode type")
+            raise NameError("Python3 does not support unicode type")
         except AssertionError:
             raise CheckError('{} is not Unicode'.format(self._val))
 
@@ -523,7 +523,7 @@ class Check:
             assert not isinstance(self._val, unicode)
             return self
         except NameError:  # Python3
-            raise CheckError("Python3 does not support unicode type")
+            raise NameError("Python3 does not support unicode type")
         except AssertionError:
             raise CheckError('{} is Unicode'.format(self._val))
 
@@ -823,18 +823,12 @@ class Check:
 
     def is_not_uuid1(self):
         try:
-            assert (UUID(self.value).version == 1)        
+            assert UUID(self._val).version != 1
+            return self
+        except ValueError:  # self._val is not a UUID at all
+            raise CheckError('{} is not a valid uuid'.format(self._val))
+        except:  # self._val is a UUID, but is indeed v1
             raise CheckError('{} is a uuid1'.format(self._val))
-        except:
-            pass
-
-        try:
-            assert (UUID(self.value).version != 1)
-            return self
-        except (AssertionError):
-            raise CheckError('{} is uuid1'.format(self._val))
-        except (ValueError):
-            return self
 
     def is_uuid4(self):
         try:
@@ -845,15 +839,9 @@ class Check:
 
     def is_not_uuid4(self):
         try:
-            assert (UUID(self.value).version == 4)        
-            raise CheckError('{} is a uuid4'.format(self._val))
-        except:
-            pass
-        
-        try:
-            assert (UUID(self.value).version != 4)
+            assert UUID(self._val).version != 4
             return self
-        except (AttributeError, ValueError):
-            return self
-        except (AssertionError):
+        except ValueError:  # self._val is not a UUID at all
+            raise CheckError('{} is not a valid uuid'.format(self._val))
+        except:  # self._val is a UUID, but is indeed v4
             raise CheckError('{} is a uuid4'.format(self._val))
