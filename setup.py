@@ -6,7 +6,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='fluentcheck',
-    version='0.0.2',
+    version='0.0.3',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -17,6 +17,7 @@ setup(
     url='https://github.com/csparpa/check',
     author='Claudio Sparpaglione',
     author_email='csparpa@gmail.com',
+    python_requires='>3.5.0',
     classifiers=[
       "License :: OSI Approved :: MIT License",
       "Programming Language :: Python :: 2 :: Only",

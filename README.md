@@ -39,6 +39,9 @@ or
 python setup.py install
 ```
 
+Only _Python 3_ is supported (because you DID update your code to Python3, didn't you?)
+
+
 ## Usage
 Simply instantiate the `Check` wrapper around the Python value you want to
 check out, then fluently append assertions like this:
@@ -270,3 +273,6 @@ has_not_attribute(_attr)
 
 
 ```
+
+## License
+MIT license

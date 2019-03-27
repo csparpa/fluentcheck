@@ -47,14 +47,6 @@ class TestCheck(unittest.TestCase):
         except CheckError:
             pass
 
-        # this tests are only for Python2
-        try:
-            val = long('110011010', base=2)  # 410L
-            res = Check(val).is_number()
-            self.assertIsInstance(res, Check)
-        except NameError:
-            pass
-
     def test_is_not_number(self):
         val = 'not-a-number'
         self.assertTrue(all([not isinstance(val, kls)for kls in Check.NUMERIC_TYPES]))
@@ -87,17 +79,6 @@ class TestCheck(unittest.TestCase):
         except CheckError:
             pass
 
-        # this tests are only for Python2
-        try:
-            val = long('110011010', base=2)  # 410L
-            try:
-                res = Check(val).is_not_number()
-                self.fail()
-            except CheckError:
-                pass
-        except NameError:
-            pass
-
     def test_is_integer(self):
         res = Check(123).is_integer()
         self.assertIsInstance(res, Check)
@@ -117,44 +98,6 @@ class TestCheck(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
-
-    def test_is_long(self):
-        # check what Python version we're running
-        try:
-            val = long(123)
-            res = Check(val).is_long()
-            self.assertIsInstance(res, Check)
-
-            try:
-                Check('not-a-number').is_long()
-                self.fail()
-            except CheckError:
-                pass
-        except NameError:  # it's Python3
-            try:
-                Check(123).is_long()
-                self.fail()
-            except CheckError:
-                pass
-
-    def test_is_not_long(self):
-        try:
-            res = Check(123).is_not_long()
-            self.assertIsInstance(res, Check)
-
-            try:
-                val = long(123)
-                Check(val).is_not_long()
-                self.fail()
-            except CheckError:  # it's Python3
-                pass
-        except CheckError:
-            a=1
-            try:
-                Check(123).is_not_long()
-                self.fail()
-            except CheckError:
-                pass
 
     def test_is_float(self):
         res = Check(123.9).is_float()

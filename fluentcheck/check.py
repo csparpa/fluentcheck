@@ -1,21 +1,15 @@
-import re
 import json
-import yaml
+import re
 import types
-try:
-    from .exceptions import CheckError
-except:
-    from exceptions import CheckError
-from xml.etree import ElementTree
+import yaml
+from .exceptions import CheckError
 from uuid import UUID
+from xml.etree import ElementTree
 
 
 class Check:
 
-    try:  # Python 2.x
-        NUMERIC_TYPES = (int, long, float, complex)
-    except NameError:  # Python 3.x
-        NUMERIC_TYPES = (int, float, complex)
+    NUMERIC_TYPES = (int, float, complex)
 
     def __init__(self, value):
         self._val = value
@@ -69,24 +63,6 @@ class Check:
             return self
         except AssertionError:
             raise CheckError('{} is integer'.format(self._val))
-
-    def is_long(self):
-        try:
-            assert isinstance(self._val, long)
-            return self
-        except AssertionError:
-            raise CheckError('{} is not long'.format(self._val))
-        except NameError:  # Python3
-            raise CheckError("Python3 does not support long numeric type")
-
-    def is_not_long(self):
-        try:
-            assert not isinstance(self._val, long)
-            return self
-        except AssertionError:
-            raise CheckError('{} is long'.format(self._val))
-        except NameError:  # Python3
-            raise CheckError("Python3 does not support long numeric type")
 
     def is_float(self):
         try:
