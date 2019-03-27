@@ -1,0 +1,3 @@
+
+class CheckError(AssertionError):
+    pass

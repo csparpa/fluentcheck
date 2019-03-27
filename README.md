@@ -18,7 +18,7 @@ def my_function(n, obj):
 just:
 
 ```python
-from fuentcheck import Check
+from fluentcheck import Check
 
 def my_function(n, obj):
     Check(n).is_not_None().is_float().is_between(0., 1.)

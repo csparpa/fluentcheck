@@ -2,12 +2,12 @@ import re
 import json
 import yaml
 import types
+try:
+    from .exceptions import CheckError
+except:
+    from exceptions import CheckError
 from xml.etree import ElementTree
 from uuid import UUID
-
-
-class CheckError(AssertionError):
-    pass
 
 
 class Check:
