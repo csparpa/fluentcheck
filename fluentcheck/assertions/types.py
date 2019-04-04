@@ -2,81 +2,81 @@ import types as t
 from ..exceptions import CheckError
 
 
-def is_subtype_of(self, _type):
+def is_subtype_of(check_obj, _type):
     try:
-        assert issubclass(self._val.__class__, _type)
-        return self
+        assert issubclass(check_obj._val.__class__, _type)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not subtype of {}'.format(self._val, _type))
+        raise CheckError('{} is not subtype of {}'.format(check_obj._val, _type))
 
 
-def is_not_subtype_of(self, _type):
+def is_not_subtype_of(check_obj, _type):
     try:
-        assert issubclass(self._val.__class__, _type)
-        raise CheckError('{} is subtype of {}'.format(self._val, _type))
+        assert issubclass(check_obj._val.__class__, _type)
+        raise CheckError('{} is subtype of {}'.format(check_obj._val, _type))
     except AssertionError:
-        return self
+        return check_obj
 
 
-def is_of_type(self, _type):
+def is_of_type(check_obj, _type):
     try:
-        assert isinstance(self._val, _type)
-        return self
+        assert isinstance(check_obj._val, _type)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not of type {}'.format(self._val, _type))
+        raise CheckError('{} is not of type {}'.format(check_obj._val, _type))
 
 
-def is_not_of_type(self, _type):
+def is_not_of_type(check_obj, _type):
     try:
-        assert not isinstance(self._val, _type)
-        return self
+        assert not isinstance(check_obj._val, _type)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is of type {}'.format(self._val, _type))
+        raise CheckError('{} is of type {}'.format(check_obj._val, _type))
 
 
-def is_module(self):
+def is_module(check_obj):
     try:
-        assert isinstance(self._val, t.ModuleType)
-        return self
+        assert isinstance(check_obj._val, t.ModuleType)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not a module'.format(self._val))
+        raise CheckError('{} is not a module'.format(check_obj._val))
 
 
-def is_not_module(self):
+def is_not_module(check_obj):
     try:
-        assert not isinstance(self._val, t.ModuleType)
-        return self
+        assert not isinstance(check_obj._val, t.ModuleType)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is a module'.format(self._val))
+        raise CheckError('{} is a module'.format(check_obj._val))
 
 
-def is_runnable(self):
+def is_runnable(check_obj):
     try:
-        assert isinstance(self._val, types.FunctionType)
-        return self
+        assert isinstance(check_obj._val, types.FunctionType)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not runnable'.format(self._val))
+        raise CheckError('{} is not runnable'.format(check_obj._val))
 
 
-def is_not_runnable(self):
+def is_not_runnable(check_obj):
     try:
-        assert not isinstance(self._val, types.FunctionType)
-        return self
+        assert not isinstance(check_obj._val, types.FunctionType)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is runnable'.format(self._val))
+        raise CheckError('{} is runnable'.format(check_obj._val))
 
 # Any type
 
-def equals(self, expected):
+def equals(check_obj, expected):
     try:
-        assert self._val == expected
-        return self
+        assert check_obj._val == expected
+        return check_obj
     except AssertionError:
-        raise CheckError('{} does not equal {}'.format(self._val, expected))
+        raise CheckError('{} does not equal {}'.format(check_obj._val, expected))
 
-def not_equals(self, expected):
+def not_equals(check_obj, expected):
     try:
-        assert self._val == expected
-        raise CheckError('{} equals {}'.format(self._val, expected))
+        assert check_obj._val == expected
+        raise CheckError('{} equals {}'.format(check_obj._val, expected))
     except AssertionError:
-        return self
+        return check_obj

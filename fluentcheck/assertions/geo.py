@@ -2,37 +2,37 @@ from ..check import Check
 from ..exceptions import CheckError
 
 
-def is_latitude(self):
-    self.is_real()
+def is_latitude(check_obj):
+    check_obj.is_real()
     try:
-        self.is_between(-90.0, 90.0)
-        return self
+        check_obj.is_between(-90.0, 90.0)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not a valid latitude'.format(self._val))
+        raise CheckError('{} is not a valid latitude'.format(check_obj._val))
 
 
-def is_longitude(self):
-    self.is_real()
+def is_longitude(check_obj):
+    check_obj.is_real()
     try:
-        self.is_between(-180.0, 180.0)
-        return self
+        check_obj.is_between(-180.0, 180.0)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not a valid longitude'.format(self._val))
+        raise CheckError('{} is not a valid longitude'.format(check_obj._val))
 
 
-def is_azimuth(self):
+def is_azimuth(check_obj):
     try:
-        self.is_number().is_positive()
+        check_obj.is_number().is_positive()
     except:
-        raise CheckError('{} is not a valid azimuth'.format(self._val))
+        raise CheckError('{} is not a valid azimuth'.format(check_obj._val))
 
 
-def is_geopoint(self):
-    self.is_couple()
+def is_geopoint(check_obj):
+    check_obj.is_couple()
     try:
-        first = Check(self._val[0])
+        first = Check(check_obj._val[0])
         first.is_long()
-        second = Check(self._val[1])
+        second = Check(check_obj._val[1])
         second.is_latitude()
     except AssertionError:
-        raise CheckError('{} is not a valid geographic point'.format(self._val))
+        raise CheckError('{} is not a valid geographic point'.format(check_obj._val))

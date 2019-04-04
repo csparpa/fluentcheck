@@ -2,176 +2,176 @@ from ..check import Check
 from ..exceptions import CheckError
 
 
-def is_number(self):
+def is_number(check_obj):
     try:
-        assert isinstance(self._val, self.NUMERIC_TYPES)
-        return self
+        assert isinstance(check_obj._val, check_obj.NUMERIC_TYPES)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not a number'.format(self._val))
+        raise CheckError('{} is not a number'.format(check_obj._val))
 
 
-def is_not_number(self):
+def is_not_number(check_obj):
     try:
-        assert not isinstance(self._val, self.NUMERIC_TYPES)
-        return self
+        assert not isinstance(check_obj._val, check_obj.NUMERIC_TYPES)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is a number'.format(self._val))
+        raise CheckError('{} is a number'.format(check_obj._val))
 
 
-def is_integer(self):
+def is_integer(check_obj):
     try:
-        assert isinstance(self._val, int)
-        return self
+        assert isinstance(check_obj._val, int)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not integer'.format(self._val))
+        raise CheckError('{} is not integer'.format(check_obj._val))
 
 
-def is_not_integer(self):
+def is_not_integer(check_obj):
     try:
-        assert not isinstance(self._val, int)
-        return self
+        assert not isinstance(check_obj._val, int)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is integer'.format(self._val))
+        raise CheckError('{} is integer'.format(check_obj._val))
 
 
-def is_float(self):
+def is_float(check_obj):
     try:
-        assert isinstance(self._val, float)
-        return self
+        assert isinstance(check_obj._val, float)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not float'.format(self._val))
+        raise CheckError('{} is not float'.format(check_obj._val))
 
 
-def is_not_float(self):
+def is_not_float(check_obj):
     try:
-        assert not isinstance(self._val, float)
-        return self
+        assert not isinstance(check_obj._val, float)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is float'.format(self._val))
+        raise CheckError('{} is float'.format(check_obj._val))
 
 
-def is_real(self):
-    self.is_number()
+def is_real(check_obj):
+    check_obj.is_number()
     try:
-        assert not isinstance(self._val, complex)
-        return self
+        assert not isinstance(check_obj._val, complex)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not real'.format(self._val))
+        raise CheckError('{} is not real'.format(check_obj._val))
 
 
-def is_not_real(self):
-    self.is_number()
+def is_not_real(check_obj):
+    check_obj.is_number()
     try:
-        assert isinstance(self._val, complex)
-        return self
+        assert isinstance(check_obj._val, complex)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is real'.format(self._val))
+        raise CheckError('{} is real'.format(check_obj._val))
 
 
-def is_complex(self):
+def is_complex(check_obj):
     try:
-        assert isinstance(self._val, complex)
-        return self
+        assert isinstance(check_obj._val, complex)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is not complex'.format(self._val))
+        raise CheckError('{} is not complex'.format(check_obj._val))
 
 
-def is_not_complex(self):
+def is_not_complex(check_obj):
     try:
-        assert not isinstance(self._val, complex)
-        return self
+        assert not isinstance(check_obj._val, complex)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is complex'.format(self._val))
+        raise CheckError('{} is complex'.format(check_obj._val))
 
 
-def is_positive(self):
-    self.is_real()
+def is_positive(check_obj):
+    check_obj.is_real()
     try:
-        assert float(self._val) > 0.
-        return self
+        assert float(check_obj._val) > 0.
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is zero or negative'.format(self._val))
+        raise CheckError('{} is zero or negative'.format(check_obj._val))
 
 
-def is_not_positive(self):
-    self.is_real()
+def is_not_positive(check_obj):
+    check_obj.is_real()
     try:
-        assert float(self._val) <= 0
-        return self
+        assert float(check_obj._val) <= 0
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is positive'.format(self._val))
+        raise CheckError('{} is positive'.format(check_obj._val))
 
 
-def is_negative(self):
-    self.is_real()
+def is_negative(check_obj):
+    check_obj.is_real()
     try:
-        assert float(self._val) < 0.
-        return self
+        assert float(check_obj._val) < 0.
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is zero or positive'.format(self._val))
+        raise CheckError('{} is zero or positive'.format(check_obj._val))
 
 
-def is_not_negative(self):
-    self.is_real()
+def is_not_negative(check_obj):
+    check_obj.is_real()
     try:
-        assert float(self._val) >= 0
-        return self
+        assert float(check_obj._val) >= 0
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is negative'.format(self._val))
+        raise CheckError('{} is negative'.format(check_obj._val))
 
 
-def is_zero(self):
-    self.is_real()
+def is_zero(check_obj):
+    check_obj.is_real()
     try:
-        assert float(self._val) == 0.
-        return self
+        assert float(check_obj._val) == 0.
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is non-zero'.format(self._val))
+        raise CheckError('{} is non-zero'.format(check_obj._val))
 
 
-def is_not_zero(self):
-    self.is_real()
+def is_not_zero(check_obj):
+    check_obj.is_real()
     try:
-        assert float(self._val) != 0.
-        return self
+        assert float(check_obj._val) != 0.
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is non-zero'.format(self._val))
+        raise CheckError('{} is non-zero'.format(check_obj._val))
 
 
-def is_at_least(self, lower):
-    self.is_real()
+def is_at_least(check_obj, lower):
+    check_obj.is_real()
     Check(lower).is_real()
     try:
-        assert float(self._val) >= float(lower)
-        return self
+        assert float(check_obj._val) >= float(lower)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is smaller than {}'.format(self._val, lower))
+        raise CheckError('{} is smaller than {}'.format(check_obj._val, lower))
 
 
-def is_at_most(self, upper):
-    self.is_real()
+def is_at_most(check_obj, upper):
+    check_obj.is_real()
     Check(upper).is_real()
     try:
-        assert float(self._val) <= float(upper)
-        return self
+        assert float(check_obj._val) <= float(upper)
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is bigger than {}'.format(self._val, upper))
+        raise CheckError('{} is bigger than {}'.format(check_obj._val, upper))
 
 
-def is_between(self, lower, upper):
-    self.is_real()
+def is_between(check_obj, lower, upper):
+    check_obj.is_real()
     Check(lower).is_real()
     Check(upper).is_real()
-    self.is_at_least(lower).is_at_most(upper)
-    return self
+    check_obj.is_at_least(lower).is_at_most(upper)
+    return check_obj
 
 
-def is_not_between(self, lower, upper):
-    self.is_real()
+def is_not_between(check_obj, lower, upper):
+    check_obj.is_real()
     Check(lower).is_real()
     Check(upper).is_real()
     try:
-        assert float(self._val) <= lower or float(self._val) >= upper
-        return self
+        assert float(check_obj._val) <= lower or float(check_obj._val) >= upper
+        return check_obj
     except AssertionError:
-        raise CheckError('{} is between {} and {}'.format(self._val, lower, upper))
+        raise CheckError('{} is between {} and {}'.format(check_obj._val, lower, upper))
