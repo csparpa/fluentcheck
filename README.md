@@ -159,6 +159,16 @@ is_not_dict()
 has_keys(*args)
 has_not_keys(*args)
 
+# Sets
+is_set()
+is_not_set()
+is_subset_of(_set)
+is_not_subset_of(_set)
+is_superset_of(_set)
+is_not_superset_of(_set)
+intersects(_set)
+not_intersects(_set)
+
 # Functions
 is_runnable()
 is_not_runnable()
@@ -244,14 +254,6 @@ has_not_timezone(tz)
 # Geographic coords
 is_plus_code()  # https://plus.codes/
 is_not_plus_code()
-
-# Sets
-is_set()
-is_not_set()
-is_subset_of(_set)
-is_not_subset_of(_set)
-intersects(_set)
-not_intersects(_set)
 
 # Check against a custom rule (lambda)
 conforms_to(func)

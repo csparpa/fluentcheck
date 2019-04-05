@@ -16,9 +16,10 @@ class Check:
         from fluentcheck.assertions import types as ass_types
         from fluentcheck.assertions import geo as ass_geo
         from fluentcheck.assertions import uuids as ass_uuids
+        from fluentcheck.assertions import collections as ass_colls
         instance = super(Check, cls).__new__(cls)
         for module in [ass_numb, ass_seq, ass_str, ass_bool, ass_dicts, ass_types,
-                       ass_geo, ass_uuids]:
+                       ass_geo, ass_uuids, ass_colls]:
             for item in inspect.getmembers(module, inspect.isfunction):
                 func_name = item[0]
                 func = item[1]
