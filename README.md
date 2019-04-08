@@ -1,5 +1,5 @@
 # fluentcheck
-_Fluent assertions for Python_
+_Fluent assertion framework for Python_
 
 Bored of using `assert` multiple times to check types, intervals, etc. on data passed as input to your Python functions?
 This generates a lot of boilerplate code. __fluentcheck__ helps you reducing the lines of code providing you a human-friendly and fluent way to make assertions.
@@ -26,7 +26,7 @@ def my_function(n, obj):
 ```
 
 
-...of course __fluentcheck__ can also be used as an _assertion framework in tests_.
+...of course __Fluentcheck__ can also be used as an _assertion framework in tests_.
 
 
 ## Installation
