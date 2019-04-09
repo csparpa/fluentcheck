@@ -1,25 +1,27 @@
+import importlib
 import inspect
+import pkgutil
 from .exceptions import CheckError
 
 
 class Check:
 
     NUMERIC_TYPES = (int, float, complex)
+    ASSERTIONS_PACKAGE = 'fluentcheck.assertions'
+
+    def _import_assertion_modules(self):
+        ass = importlib.import_module(Check.ASSERTIONS_PACKAGE)
+        assertion_modules = list()
+        for _1, module_name, _2 in pkgutil.iter_modules(ass.__path__):
+            assertion_modules.append(importlib.import_module(ass.__name__ + '.' + module_name))
+        return assertion_modules
 
     def __new__(cls, *args, **kwargs):
-        # import assertion functions from submodules
-        from fluentcheck.assertions import numbers as ass_numb
-        from fluentcheck.assertions import sequences as ass_seq
-        from fluentcheck.assertions import strings as ass_str
-        from fluentcheck.assertions import booleans as ass_bool
-        from fluentcheck.assertions import dicts as ass_dicts
-        from fluentcheck.assertions import types as ass_types
-        from fluentcheck.assertions import geo as ass_geo
-        from fluentcheck.assertions import uuids as ass_uuids
-        from fluentcheck.assertions import collections as ass_colls
+        # retrieve all modules in assertion package
+        assertion_modules = cls._import_assertion_modules(cls)
+        # bind Check object instance with assertion functions from assertion modules
         instance = super(Check, cls).__new__(cls)
-        for module in [ass_numb, ass_seq, ass_str, ass_bool, ass_dicts, ass_types,
-                       ass_geo, ass_uuids, ass_colls]:
+        for module in assertion_modules:
             for item in inspect.getmembers(module, inspect.isfunction):
                 func_name = item[0]
                 func = item[1]
@@ -34,7 +36,7 @@ class Check:
     def value(self):
         return self._val
 
-    # Nonethiness
+    # Basic checks
 
     def is_none(self):
         try:
