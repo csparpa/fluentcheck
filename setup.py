@@ -26,5 +26,6 @@ setup(
       "Development Status :: 3 - Alpha",
       "Intended Audience :: Developers",
       "Topic :: Software Development :: Libraries"],
-    keywords='check python fluent fluent-interface assertion-library assertions testing fluent-assertions'
+    keywords='check python fluent fluent-interface assertion-library assertions testing fluent-assertions',
+    test_suite='fluentcheck.tests'
 )
