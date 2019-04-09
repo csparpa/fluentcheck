@@ -1,4 +1,1 @@
-try:
-    from .check import Check
-except:
-    from check import Check
+from .check import Check
