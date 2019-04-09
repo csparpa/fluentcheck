@@ -13,7 +13,7 @@ setup(
         'pyyaml>=4.2b1',
     ],
     license='MIT License',
-    description='Fluent assertions for Python values',
+    description='Fluent assertions framework for Python',
     url='https://github.com/csparpa/check',
     author='Claudio Sparpaglione',
     author_email='csparpa@gmail.com',
@@ -26,5 +26,5 @@ setup(
       "Development Status :: 3 - Alpha",
       "Intended Audience :: Developers",
       "Topic :: Software Development :: Libraries"],
-    keywords='check python fluent assertion test'
+    keywords='check python fluent fluent-interface assertion-library assertions testing fluent-assertions'
 )
