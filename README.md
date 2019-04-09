@@ -1,8 +1,10 @@
-# fluentcheck
+# Fluentcheck
 _Fluent assertion framework for Python_
 
 Bored of using `assert` multiple times to check types, intervals, etc. on data passed as input to your Python functions?
-This generates a lot of boilerplate code. __fluentcheck__ helps you reducing the lines of code providing you a human-friendly and fluent way to make assertions.
+This generates a lot of boilerplate code.
+
+__fluentcheck__ helps you reducing the lines of code providing a human-friendly and fluent way to make assertions.
 
 Instead of:
 
@@ -15,7 +17,7 @@ def my_function(n, obj):
     assert isinstance(obj, MyCustomType)
 ```
 
-just:
+you just streamline the assertions ("checks") you want to make, in a fluent way:
 
 ```python
 from fluentcheck import Check
@@ -26,7 +28,7 @@ def my_function(n, obj):
 ```
 
 
-...of course __Fluentcheck__ can also be used as an _assertion framework in tests_.
+__Fluentcheck__ can also be used as an _assertion framework in tests_.
 
 
 ## Installation
@@ -52,13 +54,13 @@ from fluentcheck import Check
 Check(my_value).assertion1().assertion2().assertion3() # and so on
 ```
 
-_If the order of assertions matters to your overall goal, then take care of it!_
+What if an assertion fails? A `CheckError` is raised: just catch it!
 
-What if an assertion fails? A `CheckError` is raised: just catch it! 
+Please notice: if the order of assertions _matters_ to your overall goal,_ then take care of it!_
 
 
 ## What can I actually check with it?
-This is a (non-exhaustive) list of assertions you can make:
+To date, here's a list of assertions you can make:
 
 ```python
 # Numbers
@@ -205,6 +207,8 @@ is_not_uuid4()
 ```
 
 ## Coming soon
+
+The following checks will be added in the upcoming versions:
 
 ```python
 # Dates
