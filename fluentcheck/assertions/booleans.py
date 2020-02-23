@@ -34,29 +34,27 @@ def is_falsy(check_obj):
 
 
 def is_not_truthy(check_obj):
-    check_obj.is_falsy()
+    return check_obj.is_falsy()
 
 
 def is_not_falsy(check_obj):
-    check_obj.is_truthy()
+    return check_obj.is_truthy()
 
 
 def is_true(check_obj):
-    check_obj.is_boolean()
-    check_obj.is_truthy()
+    return check_obj.is_truthy().is_boolean()
 
 
 def is_false(check_obj):
-    check_obj.is_boolean()
-    check_obj.is_falsy()
+    return check_obj.is_falsy().is_boolean()
 
 
 def is_not_true(check_obj):
-    check_obj.is_false()
+    return check_obj.is_false()
 
 
 def is_not_false(check_obj):
-    check_obj.is_true()
+    return check_obj.is_true()
 
 
 def has_same_truth_of(check_obj, value):
