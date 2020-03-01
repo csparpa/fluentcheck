@@ -12,10 +12,10 @@ def is_subtype_of(check_obj, _type):
 
 def is_not_subtype_of(check_obj, _type):
     try:
-        assert issubclass(check_obj._val.__class__, _type)
-        raise CheckError('{} is subtype of {}'.format(check_obj._val, _type))
-    except AssertionError:
+        assert not issubclass(check_obj._val.__class__, _type)
         return check_obj
+    except AssertionError:
+        raise CheckError('{} is subtype of {}'.format(check_obj._val, _type))
 
 
 def is_of_type(check_obj, _type):
