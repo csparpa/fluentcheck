@@ -1,4 +1,4 @@
-from typing import Any, Set
+from typing import Any, Set, List
 
 from fluentcheck import Check
 
@@ -89,6 +89,124 @@ class Is:
         Check(self.object).is_not_set()
         return self
 
+    @property
+    def dict(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_dict()
+        return self
+
+    @property
+    def not_dict(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_dict()
+        return self
+
+    @property
+    def number(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_number()
+        return self
+
+    @property
+    def integer(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_integer()
+        return self
+
+    @property
+    def float(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_float()
+        return self
+
+    @property
+    def not_float(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_float()
+        return self
+
+    @property
+    def not_number(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_number()
+        return self
+
+    @property
+    def not_integer(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_integer()
+        return self
+
+    @property
+    def real(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_real()
+        return self
+
+    @property
+    def not_real(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_real()
+        return self
+
+    @property
+    def complex(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_complex()
+        return self
+
+    @property
+    def not_complex(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_complex()
+        return self
+
+    @property
+    def positive(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_positive()
+        return self
+
+    @property
+    def negative(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_negative()
+        return self
+
+    @property
+    def not_negative(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_negative()
+        return self
+
+    @property
+    def not_positive(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_positive()
+        return self
+
+    @property
+    def zero(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_zero()
+        return self
+
+    @property
+    def nonzero(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_zero()
+        return self
+
+    def has_keys(self, *keys) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).has_keys(*keys)
+        return self
+
+    def not_has_keys(self, *keys) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).has_not_keys(*keys)
+        return self
+
     def subset_of(self, full_set: Set[Any]) -> "Is":
         # noinspection PyUnresolvedReferences
         Check(self.object).is_subset_of(full_set)
@@ -127,4 +245,24 @@ class Is:
     def has_opposite_truth_of(self, compare_obj) -> "Is":
         # noinspection PyUnresolvedReferences
         Check(self.object).has_opposite_truth_of(compare_obj)
+        return self
+
+    def at_least(self, number) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_at_least(number)
+        return self
+
+    def at_most(self, number) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_at_most(number)
+        return self
+
+    def between(self, lower_bound, upper_bound) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_between(lower_bound, upper_bound)
+        return self
+
+    def not_between(self, lower_bound, upper_bound) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_between(lower_bound, upper_bound)
         return self

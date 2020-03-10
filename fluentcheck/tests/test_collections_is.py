@@ -1,7 +1,7 @@
 import unittest
 
 from fluentcheck import Is
-from fluentcheck.check import Check, CheckError
+from fluentcheck.check import CheckError
 
 
 # noinspection PyStatementEffect
