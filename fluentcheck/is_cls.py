@@ -221,9 +221,73 @@ class Is:
         Check(self.object).is_not_uuid4()
         return self
 
+    @property
+    def string(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_string()
+        return self
+
+    @property
+    def not_string(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_string()
+        return self
+
+    @property
+    def contains_numbers(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).contains_numbers()
+        return self
+
+    @property
+    def not_contains_numbers(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).not_contains_numbers()
+        return self
+
+    @property
+    def only_numbers(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).contains_numbers_only()
+        return self
+
+    @property
+    def contains_chars(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).contains_chars()
+        return self
+
+    @property
+    def not_contains_chars(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).not_contains_chars()
+        return self
+
+    @property
+    def only_chars(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).contains_chars_only()
+        return self
+
+    @property
+    def contains_spaces(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).contains_spaces()
+        return self
+
     def has_keys(self, *keys) -> "Is":
         # noinspection PyUnresolvedReferences
         Check(self.object).has_keys(*keys)
+        return self
+
+    def contains_char(self, char: str) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).contains_char(char)
+        return self
+
+    def not_contains_char(self, char: str) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).not_contains_char(char)
         return self
 
     def not_has_keys(self, *keys) -> "Is":
@@ -300,3 +364,26 @@ class Is:
         # noinspection PyUnresolvedReferences
         Check(self.object).is_not_subtype_of(class_type)
         return self
+
+    def shorter_than(self, max_length: int) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_shorter_than(max_length)
+        return self
+
+    def longer_than(self, min_length: int) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_longer_than(min_length)
+        return self
+
+    def length(self, exact_length: int) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).has_length(exact_length)
+        return self
+
+    def not_length(self, exact_length: int) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).has_not_length(exact_length)
+        return self
+
+    def finish(self) -> None:
+        pass

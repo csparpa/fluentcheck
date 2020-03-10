@@ -1,8 +1,8 @@
 import unittest
 
 from fluentcheck import Is
-from fluentcheck.check import Check, CheckError
-from fluentcheck.tests.test_type_hierarchy import ParentA, Child, GrandChild, ParentB, ChildOfMultipleParents
+from fluentcheck.check import CheckError
+from fluentcheck.tests.test_type_hierarchy import ParentA, Child, ParentB, ChildOfMultipleParents
 
 
 class TestIsTypeHierarchy(unittest.TestCase):
