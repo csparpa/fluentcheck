@@ -290,3 +290,13 @@ class Is:
         # noinspection PyUnresolvedReferences
         Check(self.object).is_not_between(lower_bound, upper_bound)
         return self
+
+    def subtype_of(self, class_type) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_subtype_of(class_type)
+        return self
+
+    def not_subtype_of(self, class_type) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_subtype_of(class_type)
+        return self
