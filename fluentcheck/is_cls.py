@@ -197,6 +197,30 @@ class Is:
         Check(self.object).is_not_zero()
         return self
 
+    @property
+    def uuid1(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_uuid1()
+        return self
+
+    @property
+    def not_uuid1(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_uuid1()
+        return self
+
+    @property
+    def uuid4(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_uuid4()
+        return self
+
+    @property
+    def not_uuid4(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_uuid4()
+        return self
+
     def has_keys(self, *keys) -> "Is":
         # noinspection PyUnresolvedReferences
         Check(self.object).has_keys(*keys)
