@@ -9,7 +9,6 @@ class TestIsBasicChecks(unittest.TestCase):
     def test_is_none_pass(self):
         obj = None
         self.assertIsInstance(Is(obj).none, Is)
-        Is(obj).none
 
     def test_is_none_fail(self):
         obj = "I am not none"
@@ -19,7 +18,6 @@ class TestIsBasicChecks(unittest.TestCase):
     def test_is_not_none_pass(self):
         obj = "I am not none"
         self.assertIsInstance(Is(obj).not_none, Is)
-        Is(obj).not_none
 
     def test_is_not_none_fail(self):
         obj = None
