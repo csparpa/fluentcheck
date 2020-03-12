@@ -93,6 +93,42 @@ class Is:
         return self
 
     @property
+    def empty(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_empty()
+        return self
+
+    @property
+    def not_empty(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_empty()
+        return self
+
+    @property
+    def iterable(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_iterable()
+        return self
+
+    @property
+    def not_iterable(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_iterable()
+        return self
+
+    @property
+    def tuple(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_tuple()
+        return self
+
+    @property
+    def list(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_list()
+        return self
+
+    @property
     def dict(self) -> "Is":
         # noinspection PyUnresolvedReferences
         Check(self.object).is_dict()
@@ -386,4 +422,9 @@ class Is:
     def not_length(self, exact_length: int) -> "Is":
         # noinspection PyUnresolvedReferences
         Check(self.object).has_not_length(exact_length)
+        return self
+
+    def has_dimensionality(self, dimensionality: int) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).has_dimensionality(dimensionality)
         return self
