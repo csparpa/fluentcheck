@@ -12,13 +12,11 @@ class TestIsCollectionsAssertions(unittest.TestCase):
         self.assertIsInstance(Is(obj).set, Is)
 
     def test_is_set_fail(self):
-        obj = 42
         with self.assertRaises(CheckError):
-            Is(obj).set
+            Is(42).set
 
     def test_is_not_set_pass(self):
-        obj = 42
-        self.assertIsInstance(Is(obj).not_set, Is)
+        self.assertIsInstance(Is(42).not_set, Is)
 
     def test_is_not_set_fail(self):
         obj = set()

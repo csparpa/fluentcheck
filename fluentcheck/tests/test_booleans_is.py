@@ -17,54 +17,47 @@ class TestIsBooleansAssertions(unittest.TestCase):
                               BooleanObject(True), BooleanByLengthObject([1, 2]))
 
     def test_is_boolean_pass(self):
-        obj = 1 == 2
-        self.assertIsInstance(Is(obj).boolean, Is)
+        self.assertIsInstance(Is(1 == 2).boolean, Is)
 
     def test_is_boolean_fail(self):
-        obj = 42
         with self.assertRaises(CheckError):
-            Is(obj).boolean
+            Is(42).boolean
 
     def test_is_not_boolean_pass(self):
         obj = object()
         self.assertIsInstance(Is(obj).not_boolean, Is)
 
     def test_is_not_boolean_fail(self):
-        obj = False
         with self.assertRaises(CheckError):
-            Is(obj).not_boolean
+            Is(False).not_boolean
 
     def test_is_true_pass(self):
         self.assertIsInstance(Is(True).true, Is)
 
     def test_is_true_fail(self):
-        obj = False
         with self.assertRaises(CheckError):
-            Is(obj).true
+            Is(False).true
 
     def test_is_not_true_pass(self):
         self.assertIsInstance(Is(False).not_true, Is)
 
     def test_is_not_true_fail(self):
-        obj = True
         with self.assertRaises(CheckError):
-            Is(obj).not_true
+            Is(True).not_true
 
     def test_is_false_pass(self):
         self.assertIsInstance(Is(False).false, Is)
 
     def test_is_false_fail(self):
-        obj = True
         with self.assertRaises(CheckError):
-            Is(obj).false
+            Is(True).false
 
     def test_is_not_false_pass(self):
         self.assertIsInstance(Is(True).not_false, Is)
 
     def test_is_not_false_fail(self):
-        obj = False
         with self.assertRaises(CheckError):
-            Is(obj).not_false
+            Is(False).not_false
 
     def test_is_falsy_pass(self):
         self.assertIsInstance(Is([]).falsy, Is)

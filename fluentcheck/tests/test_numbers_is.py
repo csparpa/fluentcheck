@@ -49,24 +49,21 @@ class TestIsNumbersAssertions(unittest.TestCase):
             Is(123).not_integer
 
     def test_is_float_pass(self):
-        obj = 123.9
-        self.assertIsInstance(Is(obj).float, Is)
+        self.assertIsInstance(Is(123.9).float, Is)
 
     def test_is_float_fail(self):
         with self.assertRaises(CheckError):
             Is(123).float
 
     def test_is_not_float_pass(self):
-        obj = 123
-        self.assertIsInstance(Is(obj).not_float, Is)
+        self.assertIsInstance(Is(123).not_float, Is)
 
     def test_is_not_float_fail(self):
         with self.assertRaises(CheckError):
             Is(123.9).not_float
 
     def test_is_real_pass(self):
-        obj = 123.9
-        self.assertIsInstance(Is(obj).real, Is)
+        self.assertIsInstance(Is(123.9).real, Is)
 
     def test_is_real_fail(self):
         with self.assertRaises(CheckError):

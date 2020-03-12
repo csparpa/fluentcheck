@@ -8,17 +8,14 @@ from fluentcheck.check import Check, CheckError
 class TestIsStringsAssertions(unittest.TestCase):
 
     def test_is_string_pass(self):
-        obj = "Hello"
-        self.assertIsInstance(Is(obj).string, Is)
+        self.assertIsInstance(Is("Hello").string, Is)
 
     def test_is_subtype_of_fail(self):
-        obj = 123
         with self.assertRaises(CheckError):
-            Is(obj).string
+            Is(123).string
 
     def test_is_not_string_pass(self):
-        obj = 123
-        self.assertIsInstance(Is(obj).not_string, Is)
+        self.assertIsInstance(Is(123).not_string, Is)
 
     def test_is_not_subtype_of_fail(self):
         obj = "I actually am a string"

@@ -7,19 +7,15 @@ from fluentcheck.exceptions import CheckError
 class TestIsBasicChecks(unittest.TestCase):
 
     def test_is_none_pass(self):
-        obj = None
-        self.assertIsInstance(Is(obj).none, Is)
+        self.assertIsInstance(Is(None).none, Is)
 
     def test_is_none_fail(self):
-        obj = "I am not none"
         with self.assertRaises(CheckError):
-            Is(obj).none
+            Is("I am not none").none
 
     def test_is_not_none_pass(self):
-        obj = "I am not none"
-        self.assertIsInstance(Is(obj).not_none, Is)
+        self.assertIsInstance(Is("I am not none").not_none, Is)
 
     def test_is_not_none_fail(self):
-        obj = None
         with self.assertRaises(CheckError):
-            Is(obj).not_none
+            Is(None).not_none
