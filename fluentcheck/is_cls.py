@@ -7,6 +7,9 @@ class Is:
     def __init__(self, object_under_test: Any):
         self.object = object_under_test
 
+    def __call__(self, *args, **kwargs):
+        return self
+
     @property
     def none(self) -> "Is":
         Check(self.object).is_none()
@@ -384,6 +387,3 @@ class Is:
         # noinspection PyUnresolvedReferences
         Check(self.object).has_not_length(exact_length)
         return self
-
-    def finish(self) -> None:
-        pass
