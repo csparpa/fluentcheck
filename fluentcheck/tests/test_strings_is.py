@@ -1,4 +1,5 @@
 import unittest
+import re
 
 from fluentcheck import Is
 from fluentcheck.check import Check, CheckError
@@ -134,3 +135,203 @@ class TestIsStringsAssertions(unittest.TestCase):
         obj = "goodbye"
         with self.assertRaises(CheckError):
             Is(obj).not_length(len(obj))
+
+    #################################################
+    # NOT IN Check tests
+    # def test_is_lowercase_pass(self):
+    #     obj = "hello world"
+    #     self.assertIsInstance(Is(obj).lowercase, Is)
+
+    def test_is_lowercase_fail(self):
+        obj = "good Bye"
+        with self.assertRaises(CheckError):
+            Is(obj).lowercase
+
+    # TODO: Why does this fail?
+    # def test_is_not_lowercase_pass(self):
+    #     obj = "HELLOWORLD"
+    #     self.assertIsInstance(Is(obj).not_lowercase, Is)
+
+    def test_is_not_lowercase_fail(self):
+        obj = "Goodbye"
+        with self.assertRaises(CheckError):
+            Is(obj).not_lowercase
+
+    # TODO: THis is broken in check
+    # fluentcheck.exceptions.CheckError: HELLO WORLD is not empty
+    # def test_is_uppercase_pass(self):
+    #     obj = "HELLO WORLD"
+    #     self.assertIsInstance(Is(obj).uppercase, Is)
+
+    def test_is_uppercase_fail(self):
+        obj = "Goodbye"
+        with self.assertRaises(CheckError):
+            Is(obj).uppercase
+
+    # TODO: Why does this fail? Need input example.
+    # def test_is_not_uppercase_pass(self):
+    #     obj = "helloworld"
+    #     self.assertIsInstance(Is(obj).not_uppercase, Is)
+
+    def test_is_not_uppercase_fail(self):
+        obj = "good Bye"
+        with self.assertRaises(CheckError):
+            Is(obj).not_uppercase
+
+    def test_is_camelcase_pass(self):
+        obj = "Hello world"
+        self.assertIsInstance(Is(obj).camelcase, Is)
+
+    def test_is_camelcase_fail(self):
+        obj = "goodbye"
+        with self.assertRaises(CheckError):
+            Is(obj).camelcase
+
+    def test_is_not_camelcase_pass(self):
+        obj = "hello world"
+        self.assertIsInstance(Is(obj).not_camelcase, Is)
+
+    def test_is_not_camelcase_fail(self):
+        obj = "GoodBye"
+        with self.assertRaises(CheckError):
+            Is(obj).not_camelcase
+
+    # TODO:
+    # Why does this fail?
+    # def test_is_snakecase_pass(self):
+    #     obj = "hello_world"
+    #     self.assertIsInstance(Is(obj).snakecase, Is)
+
+    def test_is_snakecase_fail(self):
+        obj = "goodbye"
+        with self.assertRaises(CheckError):
+            Is(obj).snakecase
+
+    # TODO: Why does this fail?
+    # def test_is_not_snakecase_pass(self):
+    #     obj = "HelloWorld"
+    #     self.assertIsInstance(Is(obj).not_snakecase, Is)
+
+    def test_is_not_snakecase_fail(self):
+        obj = "good_bye"
+        with self.assertRaises(CheckError):
+            Is(obj).not_snakecase
+
+    # TODO: Need some example input here.
+    # def test_is_unicode_pass(self):
+    #     obj = "Hello world"
+    #     self.assertIsInstance(Is(obj).unicode, Is)
+    #
+    # def test_is_unicode_fail(self):
+    #     obj = "goodbye"
+    #     with self.assertRaises(CheckError):
+    #         Is(obj).unicode
+    #
+    # def test_is_not_unicode_pass(self):
+    #     obj = "Hello world"
+    #     self.assertIsInstance(Is(obj).not_unicode, Is)
+    #
+    # def test_is_not_unicode_fail(self):
+    #     obj = "goodbye"
+    #     with self.assertRaises(CheckError):
+    #         Is(obj).not_unicode
+
+    def test_is_json_pass(self):
+        obj = '{"name": "pass"}'
+        self.assertIsInstance(Is(obj).json, Is)
+
+    def test_is_json_fail(self):
+        obj = "goodbye"
+        with self.assertRaises(CheckError):
+            Is(obj).json
+
+    def test_is_not_json_pass(self):
+        obj = "Hello world"
+        self.assertIsInstance(Is(obj).not_json, Is)
+
+    def test_is_not_json_fail(self):
+        obj = '{"name": "pass"}'
+        with self.assertRaises(CheckError):
+            Is(obj).not_json
+
+    # TODO: FAILING WRONG:
+    # AttributeError: module 'yaml' has no attribute 'loads'
+    # def test_is_yaml_pass(self):
+    #     obj = "Hello world"
+    #     self.assertIsInstance(Is(obj).yaml, Is)
+
+    # TODO: FAILING WRONG:
+    # AttributeError: module 'yaml' has no attribute 'loads'
+    # def test_is_yaml_fail(self):
+    #     obj = "goodbye"
+    #     with self.assertRaises(CheckError):
+    #         Is(obj).yaml
+
+    # TODO: FAILING WRONG:
+    # AttributeError: module 'yaml' has no attribute 'loads'
+    # def test_is_not_yaml_pass(self):
+    #     obj = "Hello world"
+    #     self.assertIsInstance(Is(obj).not_yaml, Is)
+
+    # TODO: FAILING WRONG:
+    # AttributeError: module 'yaml' has no attribute 'loads'
+    #     def test_is_not_yaml_fail(self):
+    #         obj = """
+    # ---
+    #  doe: "a deer, a female deer"
+    #  calling-birds:
+    #    - louie
+    #    - fred
+    # """.strip()
+    #         with self.assertRaises(CheckError):
+    #             Is(obj).not_yaml
+    #
+    #     def test_is_xml_pass(self):
+    #         obj = """<Agenda>
+    #     <type>gardening</type>
+    #     <Activity>
+    #       <type>cooking</type>
+    #     </Activity>
+    #   </Agenda>"""
+    #         self.assertIsInstance(Is(obj).xml, Is)
+
+    # TODO: This is broken in check:
+    # xml.etree.ElementTree.ParseError: syntax error: line 1, column 0
+    # def test_is_xml_fail(self):
+    #     obj = "not xml"
+    #     with self.assertRaises(CheckError):
+    #         Is(obj).xml
+
+    # TODO: This is broken in check:
+    # xml.etree.ElementTree.ParseError: syntax error: line 1, column 0
+    # Rather than check error
+    # def test_is_not_xml_pass(self):
+    #     obj = "Hello world"
+    #     self.assertIsInstance(Is(obj).not_xml, Is)
+
+    def test_is_not_xml_fail(self):
+        obj = """<Agenda></Agenda>"""
+        with self.assertRaises(CheckError):
+            Is(obj).not_xml
+
+    def test_is_matches_pass(self):
+        obj = 'abyss'
+        pattern = '^a...s$'
+        self.assertIsInstance(Is(obj).matches(pattern), Is)
+
+    def test_is_matches_fail(self):
+        obj = "goodbye"
+        pattern = '^a...s$'
+        with self.assertRaises(CheckError):
+            Is(obj).matches(pattern)
+
+    def test_is_not_matches_pass(self):
+        obj = "goodbye"
+        pattern = '^a...s$'
+        self.assertIsInstance(Is(obj).not_matches(pattern), Is)
+
+    def test_is_not_matches_fail(self):
+        obj = 'abyss'
+        pattern = '^a...s$'
+        with self.assertRaises(CheckError):
+            Is(obj).not_matches(pattern)

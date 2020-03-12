@@ -314,6 +314,112 @@ class Is:
         Check(self.object).contains_spaces()
         return self
 
+    @property
+    def lowercase(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_lowercase()
+        return self
+
+    @property
+    def not_lowercase(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_lowercase()
+        return self
+
+    @property
+    def uppercase(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_uppercase()
+        return self
+
+    @property
+    def not_uppercase(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_uppercase()
+        return self
+
+    @property
+    def camelcase(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_camelcase()
+        return self
+
+    @property
+    def not_camelcase(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_camelcase()
+        return self
+
+    @property
+    def snakecase(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_snakecase()
+        return self
+
+    @property
+    def not_snakecase(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_snakecase()
+        return self
+
+    @property
+    def unicode(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_unicode()
+        return self
+
+    @property
+    def not_unicode(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_unicode()
+        return self
+
+    @property
+    def json(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_json()
+        return self
+
+    @property
+    def not_json(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_json()
+        return self
+
+    @property
+    def yaml(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_yaml()
+        return self
+
+    @property
+    def not_yaml(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_yaml()
+        return self
+
+    @property
+    def xml(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_xml()
+        return self
+
+    @property
+    def not_xml(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).is_not_xml()
+        return self
+
+    def matches(self, pattern: str) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).matches(pattern)
+        return self
+
+    def not_matches(self, pattern: str) -> "Is":
+        # noinspection PyUnresolvedReferences
+        Check(self.object).not_matches(pattern)
+        return self
+
     def has_keys(self, *keys) -> "Is":
         # noinspection PyUnresolvedReferences
         Check(self.object).has_keys(*keys)
