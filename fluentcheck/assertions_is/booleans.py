@@ -1,74 +1,64 @@
-from .. import Is
-from ..classes import Check
+from .base_is import IsBase
 
 
-def boolean(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_boolean()
-    return check_obj
+# noinspection PyUnresolvedReferences
+class __IsBoolAsserts(IsBase):
+    @property
+    def boolean(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        self.check.is_boolean()
+        return self
 
+    @property
+    def not_boolean(self) -> "Is":
+        # noinspection PyUnresolvedReferences
+        self.check.is_not_boolean()
+        return self
 
-def not_boolean(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_boolean()
-    return check_obj
+    @property
+    def true(self) -> "Is":
+        self.check.is_true()
+        return self
 
+    @property
+    def false(self) -> "Is":
+        self.check.is_false()
+        return self
 
-def true(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_true()
-    return check_obj
+    @property
+    def not_true(self) -> "Is":
+        self.check.is_not_true()
+        return self
 
+    @property
+    def not_false(self) -> "Is":
+        self.check.is_not_false()
+        return self
 
-def false(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_false()
-    return check_obj
+    @property
+    def falsy(self) -> "Is":
+        self.check.is_falsy()
+        return self
 
+    @property
+    def not_falsy(self) -> "Is":
+        self.check.is_not_falsy()
+        return self
 
-def not_true(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_true()
-    return check_obj
+    @property
+    def truthy(self) -> "Is":
+        self.check.is_truthy()
+        return self
 
+    @property
+    def not_truthy(self) -> "Is":
+        self.check.is_not_truthy()
+        return self
 
-def not_false(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_false()
-    return check_obj
+    def has_same_truth_of(self, compare_obj) -> "Is":
+        self.check.has_same_truth_of(compare_obj)
+        return self
 
-
-def falsy(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_falsy()
-    return check_obj
-
-
-def not_falsy(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_falsy()
-    return check_obj
-
-
-def truthy(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_truthy()
-    return check_obj
-
-
-def not_truthy(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_truthy()
-    return check_obj
-
-
-def has_same_truth_of(check_obj, compare_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).has_same_truth_of(compare_obj)
-    return check_obj
-
-
-def has_opposite_truth_of(check_obj, compare_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).has_opposite_truth_of(compare_obj)
-    return check_obj
+    def has_opposite_truth_of(self, compare_obj) -> "Is":
+        self.check.has_opposite_truth_of(compare_obj)
+        return self
