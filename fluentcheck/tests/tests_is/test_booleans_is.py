@@ -2,7 +2,7 @@ import unittest
 
 from fluentcheck import Is
 from fluentcheck.classes import CheckError
-from fluentcheck.tests.test_booleans import BooleanByLengthObject, BooleanObject
+from fluentcheck.tests.tests_check.test_booleans import BooleanByLengthObject, BooleanObject
 
 
 # noinspection PyStatementEffect

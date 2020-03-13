@@ -7,7 +7,7 @@ from .exceptions import CheckError
 class Check:
 
     NUMERIC_TYPES = (int, float, complex)
-    ASSERTIONS_PACKAGE = 'fluentcheck.assertions'
+    ASSERTIONS_PACKAGE = 'fluentcheck.assertions_check'
 
     def _import_assertion_modules(self):
         ass = importlib.import_module(Check.ASSERTIONS_PACKAGE)
