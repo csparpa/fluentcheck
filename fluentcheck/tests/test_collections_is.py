@@ -1,0 +1,146 @@
+import unittest
+
+from fluentcheck import Is
+from fluentcheck.check import CheckError
+
+
+# noinspection PyStatementEffect
+class TestIsCollectionsAssertions(unittest.TestCase):
+
+    def test_is_set_pass(self):
+        obj = set()
+        self.assertIsInstance(Is(obj).set, Is)
+
+    def test_is_set_fail(self):
+        with self.assertRaises(CheckError):
+            Is(42).set
+
+    def test_is_not_set_pass(self):
+        self.assertIsInstance(Is(42).not_set, Is)
+
+    def test_is_not_set_fail(self):
+        obj = set()
+        with self.assertRaises(CheckError):
+            Is(obj).not_set
+
+    def test_is_subset_of_pass(self):
+        obj = {1, 2, 3}
+        full_set = {1, 2, 3, 4, 5}
+        self.assertIsInstance(Is(obj).subset_of(full_set), Is)
+
+    def test_is_subset_of_fail(self):
+        obj = {1, 2, 100}
+        full_set = {1, 2, 3, 4, 5}
+        with self.assertRaises(CheckError):
+            Is(obj).subset_of(full_set)
+
+    def test_is_not_subset_of_pass(self):
+        obj = {1, 2, 3}
+        full_set = {1, 7}
+        self.assertIsInstance(Is(obj).not_subset_of(full_set), Is)
+
+    def test_is_not_subset_of_fail(self):
+        obj = {1, 2, 5}
+        full_set = {1, 2, 3, 4, 5}
+        with self.assertRaises(CheckError):
+            Is(obj).not_subset_of(full_set)
+
+    def test_is_superset_of_pass(self):
+        obj = {1, 2, 3, 4, 5}
+        subset = {1, 2, 3}
+        self.assertIsInstance(Is(obj).superset_of(subset), Is)
+
+    def test_is_superset_of_fail(self):
+        obj = {1, 2, 3, 4, 5}
+        subset = {1, 2, 100}
+        with self.assertRaises(CheckError):
+            Is(obj).superset_of(subset)
+
+    def test_is_not_superset_of_pass(self):
+        obj = {1, 2, 3, 4, 5}
+        subset = {1, 100, 3}
+        self.assertIsInstance(Is(obj).not_superset_of(subset), Is)
+
+    def test_is_not_superset_of_fail(self):
+        obj = {1, 2, 3, 4, 5}
+        subset = {1, 2, 5}
+        with self.assertRaises(CheckError):
+            Is(obj).not_superset_of(subset)
+
+    def test_is_intersects_pass(self):
+        obj = {1, 2, 3, 4, 5}
+        other_set = {1, 2, 3, 9, 100}
+        self.assertIsInstance(Is(obj).intersects(other_set), Is)
+
+    def test_is_intersects_fail(self):
+        obj = {1, 2, 3, 4, 5}
+        other_set = {-1, 100}
+        with self.assertRaises(CheckError):
+            Is(obj).intersects(other_set)
+
+    def test_is_not_intersects_pass(self):
+        obj = {1, 2, 3, 4, 5}
+        other_set = {-1, 100}
+        self.assertIsInstance(Is(obj).not_intersects(other_set), Is)
+
+    def test_is_not_intersects_fail(self):
+        obj = {1, 2, 3, 4, 5}
+        other_set = {1, 2, 3, 9, 100}
+        with self.assertRaises(CheckError):
+            Is(obj).not_intersects(other_set)
+
+    #################################################
+    # NOT IN Check tests
+    def test_is_empty_pass(self):
+        obj = []
+        self.assertIsInstance(Is(obj).empty, Is)
+
+    def test_is_empty_fail(self):
+        obj = [1, 2]
+        with self.assertRaises(CheckError):
+            Is(obj).empty
+
+    def test_is_not_empty_pass(self):
+        obj = [1, 2]
+        self.assertIsInstance(Is(obj).not_empty, Is)
+
+    def test_is_not_empty_fail(self):
+        obj = []
+        with self.assertRaises(CheckError):
+            Is(obj).not_empty
+
+    def test_is_iterable_pass(self):
+        obj = [1, 2]
+        self.assertIsInstance(Is(obj).iterable, Is)
+
+    def test_is_iterable_fail(self):
+        obj = object()
+        with self.assertRaises(CheckError):
+            Is(obj).iterable
+
+    def test_is_not_iterable_pass(self):
+        obj = object()
+        self.assertIsInstance(Is(obj).not_iterable, Is)
+
+    def test_is_not_iterable_fail(self):
+        obj = [1, 2]
+        with self.assertRaises(CheckError):
+            Is(obj).not_iterable
+
+    def test_is_tuple_pass(self):
+        obj = 1, 2
+        self.assertIsInstance(Is(obj).tuple, Is)
+
+    def test_is_tuple_fail(self):
+        obj = [1, 2]
+        with self.assertRaises(CheckError):
+            Is(obj).tuple
+
+    def test_is_list_pass(self):
+        obj = [1, 2]
+        self.assertIsInstance(Is(obj).list, Is)
+
+    def test_is_list_fail(self):
+        obj = 1, 2
+        with self.assertRaises(CheckError):
+            Is(obj).list
