@@ -1,7 +1,7 @@
 import unittest
 
 from fluentcheck import Is
-from fluentcheck.check import CheckError
+from fluentcheck.classes import CheckError
 from fluentcheck.tests.test_type_hierarchy import ParentA, Child, ParentB, ChildOfMultipleParents
 
 
@@ -51,3 +51,55 @@ class TestIsTypeHierarchy(unittest.TestCase):
         obj = Child()
         with self.assertRaises(CheckError):
             Is(obj).not_subtype_of((ParentA, ParentB))
+
+    def test_of_type(self):
+        obj = 'string'
+        self.assertIsInstance(Is(obj).of_type(str), Is)
+        try:
+            Is(obj).of_type(int)
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_not_of_type(self):
+        obj = 123
+        self.assertIsInstance(Is(obj).not_of_type(str), Is)
+        try:
+            Is(obj).not_of_type(int)
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_module(self):
+        self.assertIsInstance(Is(unittest).module, Is)
+        try:
+            Is(123).module()
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_not_module(self):
+        self.assertIsInstance(Is(123).not_module, Is)
+        try:
+            self.assertIsInstance(Is(unittest).not_module, Is)
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_runnable(self):
+        obj = lambda x: x + 1
+        self.assertIsInstance(Is(obj).runnable, Is)
+        try:
+            Is(123).runnable
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_not_runnable(self):
+        obj = lambda x: x + 1
+        self.assertIsInstance(Is(123).not_runnable, Is)
+        try:
+            Is(obj).not_runnable
+            self.fail()
+        except CheckError:
+            pass

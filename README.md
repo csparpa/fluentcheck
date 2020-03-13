@@ -229,7 +229,6 @@ is_not_runnable()
 is_module()
 is_not_module()
 
-
 # Type hierarchy
 is_subtype_of(_type)
 is_not_subtype_of(_type)
@@ -237,10 +236,6 @@ is_not_subtype_of(_type)
 # Custom types
 is_of_type(_type)
 is_not_of_type(_type)
-
-# Any type
-equals(expected)
-not_equals(expected)
 
 # Geographic coords
 is_latitude()
@@ -354,10 +349,6 @@ not_intersects(_set)
 # Type hierarchy
 subtype_of(_type)
 not_subtype_of(_type)
-
-# Any type
-equals(expected)
-not_equals(expected)
 
 # UUIDs
 is_uuid1()

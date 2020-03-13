@@ -1,5 +1,5 @@
 import unittest
-from fluentcheck.check import Check, CheckError
+from fluentcheck.classes import Check, CheckError
 
 
 class TestStringsAssertions(unittest.TestCase):
