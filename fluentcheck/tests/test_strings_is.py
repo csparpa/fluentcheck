@@ -254,60 +254,47 @@ class TestIsStringsAssertions(unittest.TestCase):
         with self.assertRaises(CheckError):
             Is(obj).not_json
 
-    # TODO: FAILING WRONG:
-    # AttributeError: module 'yaml' has no attribute 'loads'
-    # def test_is_yaml_pass(self):
-    #     obj = "Hello world"
-    #     self.assertIsInstance(Is(obj).yaml, Is)
+    def test_is_yaml_pass(self):
+        obj = "Hello world"
+        self.assertIsInstance(Is(obj).yaml, Is)
 
-    # TODO: FAILING WRONG:
-    # AttributeError: module 'yaml' has no attribute 'loads'
-    # def test_is_yaml_fail(self):
-    #     obj = "goodbye"
-    #     with self.assertRaises(CheckError):
-    #         Is(obj).yaml
+    def test_is_yaml_fail(self):
+        obj = "xxx: {"
+        with self.assertRaises(CheckError):
+            Is(obj).yaml
 
-    # TODO: FAILING WRONG:
-    # AttributeError: module 'yaml' has no attribute 'loads'
-    # def test_is_not_yaml_pass(self):
-    #     obj = "Hello world"
-    #     self.assertIsInstance(Is(obj).not_yaml, Is)
+    def test_is_not_yaml_pass(self):
+        obj = "xxx: {"
+        self.assertIsInstance(Is(obj).not_yaml, Is)
 
-    # TODO: FAILING WRONG:
-    # AttributeError: module 'yaml' has no attribute 'loads'
-    #     def test_is_not_yaml_fail(self):
-    #         obj = """
-    # ---
-    #  doe: "a deer, a female deer"
-    #  calling-birds:
-    #    - louie
-    #    - fred
-    # """.strip()
-    #         with self.assertRaises(CheckError):
-    #             Is(obj).not_yaml
-    #
-    #     def test_is_xml_pass(self):
-    #         obj = """<Agenda>
-    #     <type>gardening</type>
-    #     <Activity>
-    #       <type>cooking</type>
-    #     </Activity>
-    #   </Agenda>"""
-    #         self.assertIsInstance(Is(obj).xml, Is)
+    def test_is_not_yaml_fail(self):
+        obj = """
+     ---
+      doe: "a deer, a female deer"
+      calling-birds:
+        - louie
+        - fred
+     """.strip()
+        with self.assertRaises(CheckError):
+             Is(obj).not_yaml
 
-    # TODO: This is broken in check:
-    # xml.etree.ElementTree.ParseError: syntax error: line 1, column 0
-    # def test_is_xml_fail(self):
-    #     obj = "not xml"
-    #     with self.assertRaises(CheckError):
-    #         Is(obj).xml
+    def test_is_xml_pass(self):
+        obj = """<Agenda>
+     <type>gardening</type>
+     <Activity>
+       <type>cooking</type>
+     </Activity>
+    </Agenda>"""
+        self.assertIsInstance(Is(obj).xml, Is)
 
-    # TODO: This is broken in check:
-    # xml.etree.ElementTree.ParseError: syntax error: line 1, column 0
-    # Rather than check error
-    # def test_is_not_xml_pass(self):
-    #     obj = "Hello world"
-    #     self.assertIsInstance(Is(obj).not_xml, Is)
+    def test_is_xml_fail(self):
+        obj = "not xml"
+        with self.assertRaises(CheckError):
+            Is(obj).xml
+
+    def test_is_not_xml_pass(self):
+        obj = "Hello world"
+        self.assertIsInstance(Is(obj).not_xml, Is)
 
     def test_is_not_xml_fail(self):
         obj = """<Agenda></Agenda>"""

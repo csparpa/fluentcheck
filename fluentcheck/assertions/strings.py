@@ -255,37 +255,41 @@ def is_not_json(check_obj):
 def is_yaml(check_obj):
     check_obj.is_string()
     try:
-        yaml.loads(check_obj._val)
-        return check_obj
-    except ValueError:
+        yaml.load(check_obj._val)
+    except Exception:
         raise CheckError('{} is not valid YAML'.format(check_obj._val))
+    else:
+        return check_obj
 
 
 def is_not_yaml(check_obj):
     check_obj.is_string()
     try:
-        yaml.loads(check_obj._val)
-        raise CheckError('{} is valid YAML'.format(check_obj._val))
-    except ValueError:
+        yaml.load(check_obj._val)
+    except Exception:
         return check_obj
+    else:
+        raise CheckError('{} is valid YAML'.format(check_obj._val))
 
 
 def is_xml(check_obj):
     check_obj.is_string()
     try:
         ElementTree.fromstring(check_obj._val)
-        return check_obj
-    except ValueError:
+    except Exception:
         raise CheckError('{} is not valid XML'.format(check_obj._val))
+    else:
+        return check_obj
 
 
 def is_not_xml(check_obj):
     check_obj.is_string()
     try:
         ElementTree.fromstring(check_obj._val)
-        raise CheckError('{} is valid XML'.format(check_obj._val))
-    except ValueError:
+    except Exception:
         return check_obj
+    else:
+        raise CheckError('{} is valid XML'.format(check_obj._val))
 
 
 def matches(check_obj, regex):

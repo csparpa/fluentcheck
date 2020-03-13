@@ -138,4 +138,45 @@ class TestStringsAssertions(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
-        
+
+    def test_is_yaml(self):
+        res = Check("hello").is_yaml()
+        self.assertIsInstance(res, Check)
+        try:
+            Check(123).is_yaml()
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_is_not_yaml(self):
+        res = Check("xxx: {").is_not_yaml()
+        self.assertIsInstance(res, Check)
+        try:
+            Check("valid_yaml").is_not_yaml()
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_is_xml(self):
+        obj = """<Agenda>
+     <type>gardening</type>
+     <Activity>
+       <type>cooking</type>
+     </Activity>
+    </Agenda>"""
+        res = Check(obj).is_xml()
+        self.assertIsInstance(res, Check)
+        try:
+            Check(123).is_xml()
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_is_not_xml(self):
+        res = Check('[123]').is_not_xml()
+        self.assertIsInstance(res, Check)
+        try:
+            Check("<Agenda>ok</Agenda>").is_not_xml()
+            self.fail()
+        except CheckError:
+            pass
