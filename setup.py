@@ -14,7 +14,7 @@ setup(
     ],
     license='MIT License',
     description='Fluent assertions framework for Python',
-    url='https://github.com/csparpa/check',
+    url='https://github.com/csparpa/fluentcheck',
     author='Claudio Sparpaglione',
     author_email='csparpa@gmail.com',
     python_requires='>3.5.0',
@@ -23,9 +23,9 @@ setup(
       "Programming Language :: Python :: 2 :: Only",
       "Natural Language :: English",
       "Operating System :: OS Independent",
-      "Development Status :: 3 - Alpha",
+      "Development Status:: 4 - Beta",
       "Intended Audience :: Developers",
       "Topic :: Software Development :: Libraries"],
-    keywords='check python fluent fluent-interface assertion-library assertions testing fluent-assertions',
+    keywords='check python fluent fluent-interface assertion-library assertions testing fluent-assertions fluentcheck',
     test_suite='fluentcheck.tests'
 )
