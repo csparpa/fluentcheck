@@ -1,4 +1,4 @@
-from ..is_cls import Is
+from .. import Is
 from ..classes import Check
 from typing import Any, Set
 

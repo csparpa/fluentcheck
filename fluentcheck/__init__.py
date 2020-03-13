@@ -1,2 +1,1 @@
-from .classes import Check
-from .is_cls import Is
+from .classes import Check, Is
