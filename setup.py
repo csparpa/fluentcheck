@@ -20,10 +20,10 @@ setup(
     python_requires='>3.5.0',
     classifiers=[
       "License :: OSI Approved :: MIT License",
-      "Programming Language :: Python :: 2 :: Only",
+      "Programming Language :: Python :: 3 :: Only",
       "Natural Language :: English",
       "Operating System :: OS Independent",
-      "Development Status:: 4 - Beta",
+      "Development Status :: 3 - Alpha",
       "Intended Audience :: Developers",
       "Topic :: Software Development :: Libraries"],
     keywords='check python fluent fluent-interface assertion-library assertions testing fluent-assertions fluentcheck',
