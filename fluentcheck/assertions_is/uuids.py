@@ -1,26 +1,23 @@
-from .. import Is
-from ..classes import Check
+from fluentcheck.assertions_is.base_is import IsBase
 
 
-def uuid1(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_uuid1()
-    return check_obj
+class __IsUUIDs(IsBase):
+    @property
+    def uuid1(self) -> "Is":
+        self.check.is_uuid1()
+        return self
 
+    @property
+    def not_uuid1(self) -> "Is":
+        self.check.is_not_uuid1()
+        return self
 
-def not_uuid1(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_uuid1()
-    return check_obj
+    @property
+    def uuid4(self) -> "Is":
+        self.check.is_uuid4()
+        return self
 
-
-def uuid4(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_uuid4()
-    return check_obj
-
-
-def not_uuid4(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_uuid4()
-    return check_obj
+    @property
+    def not_uuid4(self) -> "Is":
+        self.check.is_not_uuid4()
+        return self

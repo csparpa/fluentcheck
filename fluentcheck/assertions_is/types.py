@@ -1,50 +1,39 @@
-from .. import Is
-from ..classes import Check
+from fluentcheck.assertions_is.base_is import IsBase
 
 
-def subtype_of(check_obj, class_type) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_subtype_of(class_type)
-    return check_obj
+class __IsTypes(IsBase):
+    def subtype_of(self, class_type) -> "Is":
+        self.check.is_subtype_of(class_type)
+        return self
 
+    def not_subtype_of(self, class_type) -> "Is":
+        self.check.is_not_subtype_of(class_type)
+        return self
 
-def not_subtype_of(check_obj, class_type) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_subtype_of(class_type)
-    return check_obj
+    def of_type(self, class_type) -> "Is":
+        self.check.is_of_type(class_type)
+        return self
 
+    def not_of_type(self, class_type) -> "Is":
+        self.check.is_not_of_type(class_type)
+        return self
 
-def of_type(check_obj, class_type) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_of_type(class_type)
-    return check_obj
+    @property
+    def module(self) -> "Is":
+        self.check.is_module()
+        return self
 
+    @property
+    def not_module(self) -> "Is":
+        self.check.is_not_module()
+        return self
 
-def not_of_type(check_obj, class_type) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_of_type(class_type)
-    return check_obj
+    @property
+    def runnable(self) -> "Is":
+        self.check.is_runnable()
+        return self
 
-
-def module(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_module()
-    return check_obj
-
-
-def not_module(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_module()
-    return check_obj
-
-
-def runnable(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_runnable()
-    return check_obj
-
-
-def not_runnable(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_runnable()
-    return check_obj
+    @property
+    def not_runnable(self) -> "Is":
+        self.check.is_not_runnable()
+        return self

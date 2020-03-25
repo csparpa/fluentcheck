@@ -1,17 +1,14 @@
 from .base_is import IsBase
 
 
-# noinspection PyUnresolvedReferences
-class __IsBoolAsserts(IsBase):
+class __IsBool(IsBase):
     @property
     def boolean(self) -> "Is":
-        # noinspection PyUnresolvedReferences
         self.check.is_boolean()
         return self
 
     @property
     def not_boolean(self) -> "Is":
-        # noinspection PyUnresolvedReferences
         self.check.is_not_boolean()
         return self
 

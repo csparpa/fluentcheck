@@ -1,5 +1,6 @@
 import unittest
-from fluentcheck.classes import Check, CheckError
+from fluentcheck.classes import Check
+from fluentcheck.exceptions import CheckError
 
 
 class TestUUIDSAssertions(unittest.TestCase):

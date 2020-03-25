@@ -1,51 +1,38 @@
-from .. import Is
-from ..classes import Check
 from typing import Any, Set
+from .base_is import IsBase
 
 
-def set(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_set()
-    return check_obj
+class __IsCollections(IsBase):
+    @property
+    def set(self) -> "Is":
+        self.check.is_set()
+        return self
 
+    @property
+    def not_set(self) -> "Is":
+        self.check.is_not_set()
+        return self
 
-def not_set(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_set()
-    return check_obj
+    def subset_of(self, full_set: Set[Any]) -> "Is":
+        self.check.is_subset_of(full_set)
+        return self
 
+    def not_subset_of(self, full_set: Set[Any]) -> "Is":
+        self.check.is_not_subset_of(full_set)
+        return self
 
-def subset_of(check_obj, full_set: Set[Any]) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_subset_of(full_set)
-    return check_obj
+    def superset_of(self, full_set: Set[Any]) -> "Is":
+        self.check.is_superset_of(full_set)
+        return self
 
+    def not_superset_of(self, subset: Set[Any]) -> "Is":
+        self.check.is_not_superset_of(subset)
+        return self
 
-def not_subset_of(check_obj, full_set: Set[Any]) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_subset_of(full_set)
-    return check_obj
+    def intersects(self, other_set: Set[Any]) -> "Is":
+        self.check.intersects(other_set)
+        return self
 
-
-def superset_of(check_obj, full_set: Set[Any]) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_superset_of(full_set)
-    return check_obj
-
-
-def not_superset_of(check_obj, subset: Set[Any]) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_superset_of(subset)
-    return check_obj
-
-
-def intersects(check_obj, other_set: Set[Any]) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).intersects(other_set)
-    return check_obj
-
-
-def not_intersects(check_obj, other_set: Set[Any]) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).not_intersects(other_set)
-    return check_obj
+    def not_intersects(self, other_set: Set[Any]) -> "Is":
+        self.check.not_intersects(other_set)
+        return self

@@ -1,26 +1,24 @@
-from .. import Is
-from ..classes import Check
+from fluentcheck.assertions_is.base_is import IsBase
 
 
-def latitude(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_latitude()
-    return check_obj
+class __IsGeo(IsBase):
+    @property
+    def latitude(self) -> "Is":
+        self.check.is_latitude()
+        return self
 
+    @property
+    def longitude(self) -> "Is":
+        self.check.is_longitude()
+        return self
 
-def longitude(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_longitude()
-    return check_obj
+    @property
+    def azimuth(self) -> "Is":
+        self.check.is_azimuth()
+        return self
 
-
-def azimuth(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_azimuth()
-    return check_obj
-
-
-def geopoint(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_geopoint()
-    return check_obj
+    # noinspection SpellCheckingInspection
+    @property
+    def geopoint(self) -> "Is":
+        self.check.is_geopoint()
+        return self

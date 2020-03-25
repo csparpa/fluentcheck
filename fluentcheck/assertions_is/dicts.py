@@ -1,26 +1,22 @@
-from .. import Is
-from ..classes import Check
+from fluentcheck.assertions_is.base_is import IsBase
 
 
-def dict(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_dict()
-    return check_obj
+class __IsDicts(IsBase):
 
+    @property
+    def dict(self) -> "Is":
+        self.check.is_dict()
+        return self
 
-def not_dict(check_obj) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).is_not_dict()
-    return check_obj
+    @property
+    def not_dict(self) -> "Is":
+        self.check.is_not_dict()
+        return self
 
+    def has_keys(self, *keys) -> "Is":
+        self.check.has_keys(*keys)
+        return self
 
-def has_keys(check_obj, *keys) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).has_keys(*keys)
-    return check_obj
-
-
-def has_not_keys(check_obj, *keys) -> "Is":
-    # noinspection PyUnresolvedReferences
-    Check(check_obj.object).has_not_keys(*keys)
-    return check_obj
+    def has_not_keys(self, *keys) -> "Is":
+        self.check.has_not_keys(*keys)
+        return self

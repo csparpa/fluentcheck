@@ -13,7 +13,7 @@ class IsBase:
     @property
     def check(self):
         if not IsBase.__check:
-            from fluentcheck.classes import Check
+            from ..classes import Check
             IsBase.__check = Check
 
         return IsBase.__check(self.object)

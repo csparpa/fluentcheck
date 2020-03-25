@@ -1,5 +1,7 @@
 import unittest
-from fluentcheck.classes import Check, CheckError
+from fluentcheck.classes import Check
+from fluentcheck.exceptions import CheckError
+
 
 class ParentA:
     def __init__(self):

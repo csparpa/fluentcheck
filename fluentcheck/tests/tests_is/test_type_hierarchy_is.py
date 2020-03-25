@@ -1,7 +1,7 @@
 import unittest
 
 from fluentcheck import Is
-from fluentcheck.classes import CheckError
+from fluentcheck.exceptions import CheckError
 from fluentcheck.tests.tests_check.test_type_hierarchy import ParentA, Child, ParentB, ChildOfMultipleParents
 
 
