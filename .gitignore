@@ -6,6 +6,8 @@ build/
 dist/
 fluentcheck.egg-info/
 .tox/
+.coverage
+htmlcov/
 
 
 
