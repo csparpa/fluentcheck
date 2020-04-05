@@ -1,4 +1,5 @@
 import unittest
+
 from fluentcheck.classes import Check
 from fluentcheck.exceptions import CheckError
 
@@ -40,7 +41,7 @@ class TestStringsAssertions(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
-    
+
     def test_contains_numbers_only(self):
         res = Check("123").contains_numbers_only()
         self.assertIsInstance(res, Check)
@@ -58,7 +59,7 @@ class TestStringsAssertions(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
-        
+
     def test_not_contains_chars(self):
         res = Check("123").not_contains_chars()
         self.assertIsInstance(res, Check)
@@ -67,7 +68,7 @@ class TestStringsAssertions(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
-    
+
     def test_contains_chars_only(self):
         res = Check("abc").contains_chars_only()
         self.assertIsInstance(res, Check)
@@ -94,7 +95,7 @@ class TestStringsAssertions(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
-    
+
     def test_not_contains_char(self):
         res = Check("hello world").not_contains_char('z')
         self.assertIsInstance(res, Check)
@@ -112,7 +113,7 @@ class TestStringsAssertions(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
-    
+
     def test_is_longer_than(self):
         res = Check("hello").is_longer_than(2)
         self.assertIsInstance(res, Check)
@@ -130,54 +131,12 @@ class TestStringsAssertions(unittest.TestCase):
             self.fail()
         except CheckError:
             pass
-    
+
     def test_has_not_length(self):
         res = Check("hello").has_not_length(2)
         self.assertIsInstance(res, Check)
         try:
             Check("good").has_not_length(4)
-            self.fail()
-        except CheckError:
-            pass
-
-    def test_is_yaml(self):
-        res = Check("hello").is_yaml()
-        self.assertIsInstance(res, Check)
-        try:
-            Check(123).is_yaml()
-            self.fail()
-        except CheckError:
-            pass
-
-    def test_is_not_yaml(self):
-        res = Check("xxx: {").is_not_yaml()
-        self.assertIsInstance(res, Check)
-        try:
-            Check("valid_yaml").is_not_yaml()
-            self.fail()
-        except CheckError:
-            pass
-
-    def test_is_xml(self):
-        obj = """<Agenda>
-     <type>gardening</type>
-     <Activity>
-       <type>cooking</type>
-     </Activity>
-    </Agenda>"""
-        res = Check(obj).is_xml()
-        self.assertIsInstance(res, Check)
-        try:
-            Check(123).is_xml()
-            self.fail()
-        except CheckError:
-            pass
-
-    def test_is_not_xml(self):
-        res = Check('[123]').is_not_xml()
-        self.assertIsInstance(res, Check)
-        try:
-            Check("<Agenda>ok</Agenda>").is_not_xml()
             self.fail()
         except CheckError:
             pass
