@@ -36,7 +36,7 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
         "Natural Language :: English",
         "Operating System :: OS Independent",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Libraries"],
     keywords='check python fluent fluent-interface assertion-library assertions testing fluent-assertions fluentcheck',
