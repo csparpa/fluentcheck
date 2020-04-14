@@ -1,8 +1,10 @@
 import json
 import re
-import yaml
-from ..exceptions import CheckError
 from xml.etree import ElementTree
+
+import yaml
+
+from ..exceptions import CheckError
 
 
 def is_string(check_obj):
@@ -255,7 +257,7 @@ def is_not_json(check_obj):
 def is_yaml(check_obj):
     check_obj.is_string()
     try:
-        yaml.load(check_obj._val)
+        yaml.safe_load(check_obj._val)
     except Exception:
         raise CheckError('{} is not valid YAML'.format(check_obj._val))
     else:
@@ -265,7 +267,7 @@ def is_yaml(check_obj):
 def is_not_yaml(check_obj):
     check_obj.is_string()
     try:
-        yaml.load(check_obj._val)
+        yaml.safe_load(check_obj._val)
     except Exception:
         return check_obj
     else:
@@ -299,8 +301,7 @@ def matches(check_obj, regex):
         assert pattern.match(check_obj._val) is not None
         return check_obj
     except AssertionError:
-        raise CheckError('{} does not match pattern: {}'.format(check_obj._val,
-                                                                regex))
+        raise CheckError('{} does not match pattern: {}'.format(check_obj._val, regex))
 
 
 def not_matches(check_obj, regex):
