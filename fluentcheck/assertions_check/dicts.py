@@ -3,18 +3,18 @@ from ..exceptions import CheckError
 
 def is_dict(check_obj):
     try:
-        assert isinstance(check_obj._val, dict)
+        assert isinstance(check_obj.value, dict)
         return check_obj
     except AssertionError:
-        raise CheckError('{} is not a dict'.format(check_obj._val))
+        raise CheckError('{} is not a dict'.format(check_obj.value))
 
 
 def is_not_dict(check_obj):
     try:
-        assert not isinstance(check_obj._val, dict)
+        assert not isinstance(check_obj.value, dict)
         return check_obj
     except AssertionError:
-        raise CheckError('{} is a dict'.format(check_obj._val))
+        raise CheckError('{} is a dict'.format(check_obj.value))
 
 
 def has_keys(check_obj, *args):
@@ -23,10 +23,10 @@ def has_keys(check_obj, *args):
     try:
         for key in args:
             cur_key = key
-            assert key in check_obj._val
+            assert key in check_obj.value
         return check_obj
     except AssertionError:
-        raise CheckError('{} does not contain key: {}'.format(check_obj._val,
+        raise CheckError('{} does not contain key: {}'.format(check_obj.value,
                                                               cur_key))
 
 
@@ -36,7 +36,7 @@ def has_not_keys(check_obj, *args):
     try:
         for key in args:
             cur_key = key
-            assert not key in check_obj._val
+            assert not key in check_obj.value
         return check_obj
     except AssertionError:
-        raise CheckError('{} does contains key: {}'.format(check_obj._val, cur_key))
+        raise CheckError('{} does contains key: {}'.format(check_obj.value, cur_key))
