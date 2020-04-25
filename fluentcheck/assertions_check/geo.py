@@ -23,6 +23,7 @@ def is_longitude(check_obj):
 def is_azimuth(check_obj):
     try:
         check_obj.is_number().is_positive()
+        return check_obj
     except:
         raise CheckError('{} is not a valid azimuth'.format(check_obj.value))
 
@@ -30,9 +31,9 @@ def is_azimuth(check_obj):
 def is_geopoint(check_obj):
     check_obj.is_couple()
     try:
-        first = Check(check_obj.value[0])
-        first.is_long()
-        second = Check(check_obj.value[1])
+        first, second = (Check(geo_coord) for geo_coord in check_obj.value)
+        first.is_longitude()
         second.is_latitude()
+        return check_obj
     except AssertionError:
         raise CheckError('{} is not a valid geographic point'.format(check_obj.value))
