@@ -86,3 +86,42 @@ class TestSequencesAssertions(unittest.TestCase):
         except CheckError:
             pass
 
+    def test_has_demensionality(self):
+        obj = [[1, 2], [3, 4]]
+        res = Check(obj).has_demensionality(2)
+        self.assertIsInstance(res, Check)
+        obj = [1, 2, 3]
+        try:
+            Check(obj).has_demensionality(3)
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_is_tuple(self):
+        res = Check(('a', 'b', 'c')).is_tuple()
+        self.assertIsInstance(res, Check)
+        res2 = Check((1, (1, 2), 2)).is_tuple()
+        self.assertIsInstance(res2, Check)
+        try:
+            Check([1, 2, 3]).is_tuple()
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_is_list(self):
+        res = Check([10, 9, 8]).is_list()
+        self.assertIsInstance(res, Check)
+        res2 = Check([]).is_list()
+        res2.assertIsInstance(res2, Check)
+        try:
+            Check((1, 2, 3)).is_list()
+            self.fail()
+        except CheckError:
+            pass
+
+        try:
+            Check('not list').is_list()
+            self.fail()
+        except CheckError:
+            pass
+
