@@ -86,13 +86,13 @@ class TestSequencesAssertions(unittest.TestCase):
         except CheckError:
             pass
 
-    def test_has_demensionality(self):
+    def test_has_dimensionality(self):
         obj = [[1, 2], [3, 4]]
-        res = Check(obj).has_demensionality(2)
+        res = Check(obj).has_dimensionality(2)
         self.assertIsInstance(res, Check)
         obj = [1, 2, 3]
         try:
-            Check(obj).has_demensionality(3)
+            Check(obj).has_dimensionality(3)
             self.fail()
         except CheckError:
             pass
@@ -112,7 +112,7 @@ class TestSequencesAssertions(unittest.TestCase):
         res = Check([10, 9, 8]).is_list()
         self.assertIsInstance(res, Check)
         res2 = Check([]).is_list()
-        res2.assertIsInstance(res2, Check)
+        self.assertIsInstance(res2, Check)
         try:
             Check((1, 2, 3)).is_list()
             self.fail()
