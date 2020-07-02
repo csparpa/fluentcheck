@@ -7,9 +7,6 @@ from fluentcheck.exceptions import CheckError
 # noinspection PyStatementEffect
 class TestIsSequencesAssertions(unittest.TestCase):
 
-
-    #################################################
-    # NOT IN Check tests
     def test_is_empty_pass(self):
         obj = []
         self.assertIsInstance(Is(obj).empty, Is)
