@@ -5,24 +5,24 @@ def is_empty(check_obj):
     try:
         assert len(check_obj._val) == 0
         return check_obj
-    except:
-        raise CheckError('{} is not empty'.format(check_obj._val))
+    except Exception as e:
+        raise CheckError('{} is not empty'.format(check_obj._val)) from e
 
 
 def is_not_empty(check_obj):
     try:
         assert len(check_obj._val) != 0
         return check_obj
-    except:
-        raise CheckError('{} is empty'.format(check_obj._val))
+    except Exception as e:
+        raise CheckError('{} is empty'.format(check_obj._val)) from e
 
 
 def is_iterable(check_obj):
     try:
         iter(check_obj._val)
         return check_obj
-    except TypeError:
-        raise CheckError('{} is not iterable'.format(check_obj._val))
+    except TypeError as e:
+        raise CheckError('{} is not iterable'.format(check_obj._val)) from e
 
 
 def is_not_iterable(check_obj):
@@ -38,8 +38,8 @@ def is_couple(check_obj):
     try:
         assert len(check_obj._val) == 2
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is not a sequence of 2 items'.format(check_obj._val))
+    except AssertionError as e:
+        raise CheckError('{} is not a sequence of 2 items'.format(check_obj._val)) from e
 
 
 def is_triplet(check_obj):
@@ -47,8 +47,8 @@ def is_triplet(check_obj):
     try:
         assert len(check_obj._val) == 3
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is not a sequence of 3 items'.format(check_obj._val))
+    except AssertionError as e:
+        raise CheckError('{} is not a sequence of 3 items'.format(check_obj._val)) from e
 
 
 def is_nuple(check_obj, dimension):
@@ -56,8 +56,8 @@ def is_nuple(check_obj, dimension):
     try:
         assert len(check_obj._val) == dimension
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is not a sequence of {} items'.format(check_obj._val, dimension))
+    except AssertionError as e:
+        raise CheckError('{} is not a sequence of {} items'.format(check_obj._val, dimension)) from e
 
 
 def has_dimensionality(check_obj, dimensionality):
@@ -83,8 +83,8 @@ def is_tuple(check_obj):
     try:
         assert isinstance(check_obj._val, tuple)
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is not a tuple'.format(check_obj._val))
+    except AssertionError as e:
+        raise CheckError('{} is not a tuple'.format(check_obj._val)) from e
 
 
 # List
@@ -92,5 +92,5 @@ def is_list(check_obj):
     try:
         assert isinstance(check_obj._val, list)
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is not a list'.format(check_obj._val))
+    except AssertionError as e:
+        raise CheckError('{} is not a list'.format(check_obj._val)) from e
