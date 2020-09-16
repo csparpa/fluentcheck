@@ -279,6 +279,8 @@ at_least(lower)
 at_most(upper)
 between(lower, upper)
 not_between(lower, upper)
+equals(number)
+not_equals(number)
 
 # Sequences
 empty

@@ -97,3 +97,11 @@ class __IsNumbers(IsBase):
     def not_between(self, lower_bound, upper_bound) -> "Is":
         self.check.is_not_between(lower_bound, upper_bound)
         return self
+
+    def equals(self, number) -> "Is":
+        self.check.is_equals(number)
+        return self
+
+    def not_equals(self, number) -> "Is":
+        self.check.is_not_equals(number)
+        return self

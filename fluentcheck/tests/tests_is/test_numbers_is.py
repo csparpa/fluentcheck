@@ -184,3 +184,18 @@ class TestIsNumbersAssertions(unittest.TestCase):
     def test_is_not_between_fail(self):
         with self.assertRaises(CheckError):
             Is(5.5).not_between(5, 6)
+
+    def test_is_equals_pass(self):
+        self.assertIsInstance(Is(5).equals(5), Is)
+        self.assertIsInstance(Is(5.1).equals(5.1), Is)
+
+    def test_is_equals_fail(self):
+        with self.assertRaises(CheckError):
+            Is(7).equals(5)
+
+    def test_is_not_equals_pass(self):
+        self.assertIsInstance(Is(5).not_equals(7), Is)
+
+    def test_is_not_equals_fail(self):
+        with self.assertRaises(CheckError):
+            Is(5).not_equals(5)

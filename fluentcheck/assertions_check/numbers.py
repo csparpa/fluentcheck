@@ -175,3 +175,23 @@ def is_not_between(check_obj, lower, upper):
         return check_obj
     except AssertionError:
         raise CheckError('{} is between {} and {}'.format(check_obj.value, lower, upper))
+
+
+def is_equals(check_obj, number):
+    check_obj.is_real()
+    Check(number).is_real()
+    try:
+        assert float(check_obj.value) == float(number)
+        return check_obj
+    except AssertionError:
+        raise CheckError('{} is not equals to {}'.format(check_obj.value, number))
+
+
+def is_not_equals(check_obj, number):
+    check_obj.is_real()
+    Check(number).is_real()
+    try:
+        assert float(check_obj.value) != float(number)
+        return check_obj
+    except AssertionError:
+        raise CheckError('{} is equals to {}'.format(check_obj.value, number))
