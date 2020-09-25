@@ -3,34 +3,34 @@ from ..exceptions import CheckError
 
 def is_boolean(check_obj):
     try:
-        assert isinstance(check_obj.value, bool)
+        assert isinstance(check_obj._val, bool)
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is not boolean'.format(check_obj.value))
+    except AssertionError as ae:
+        raise CheckError('{} is not boolean'.format(check_obj._val)) from ae
 
 
 def is_not_boolean(check_obj):
     try:
-        assert not isinstance(check_obj.value, bool)
+        assert not isinstance(check_obj._val, bool)
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is boolean'.format(check_obj.value))
+    except AssertionError as ae:
+        raise CheckError('{} is boolean'.format(check_obj._val)) from ae
 
 
 def is_truthy(check_obj):
     try:
-        assert check_obj.value
+        assert check_obj._val
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is falsy'.format(check_obj.value))
+    except AssertionError as ae:
+        raise CheckError('{} is falsy'.format(check_obj._val)) from ae
 
 
 def is_falsy(check_obj):
     try:
-        assert not check_obj.value
+        assert not check_obj._val
         return check_obj
-    except AssertionError:
-        raise CheckError('{} is truthy'.format(check_obj.value))
+    except AssertionError as ae:
+        raise CheckError('{} is truthy'.format(check_obj._val)) from ae
 
 
 def is_not_truthy(check_obj):
@@ -59,17 +59,17 @@ def is_not_false(check_obj):
 
 def has_same_truth_of(check_obj, value):
     try:
-        assert bool(check_obj.value) == bool(value)
+        assert bool(check_obj._val) == bool(value)
         return check_obj
-    except AssertionError:
-        raise CheckError('{} has a different truth of {}'.format(check_obj.value,
-                                                                 value))
+    except AssertionError as ae:
+        raise CheckError('{} has a different truth of {}'.format(check_obj._val,
+                                                                 value)) from ae
 
 
 def has_opposite_truth_of(check_obj, value):
     try:
-        assert bool(check_obj.value) != bool(value)
+        assert bool(check_obj._val) != bool(value)
         return check_obj
-    except AssertionError:
-        raise CheckError('{} has the same truth of {}'.format(check_obj.value,
-                                                              value))
+    except AssertionError as ae:
+        raise CheckError('{} has the same truth of {}'.format(check_obj._val,
+                                                              value)) from ae
