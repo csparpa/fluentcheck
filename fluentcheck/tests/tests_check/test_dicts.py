@@ -6,7 +6,7 @@ from fluentcheck.exceptions import CheckError
 class TestDictsAssertions(unittest.TestCase):
 
     def test_is_dict(self):
-        res = Check(dict()).is_dict()
+        res = Check({}).is_dict()
         self.assertIsInstance(res, Check)
         try:
             Check(123).is_dict()
@@ -18,7 +18,7 @@ class TestDictsAssertions(unittest.TestCase):
         res = Check(set()).is_not_dict()
         self.assertIsInstance(res, Check)
         try:
-            Check(dict()).is_not_dict()
+            Check({}).is_not_dict()
             self.fail()
         except CheckError:
             pass
