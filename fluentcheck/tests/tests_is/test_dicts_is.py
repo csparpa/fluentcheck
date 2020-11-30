@@ -8,7 +8,7 @@ from fluentcheck.exceptions import CheckError
 class TestIsDictsAssertions(unittest.TestCase):
 
     def test_is_dict_pass(self):
-        obj = dict()
+        obj = {}
         self.assertIsInstance(Is(obj).dict, Is)
 
     def test_is_dict_fail(self):
@@ -21,7 +21,7 @@ class TestIsDictsAssertions(unittest.TestCase):
         self.assertIsInstance(Is(obj).not_dict, Is)
 
     def test_is_not_dict_fail(self):
-        obj = dict()
+        obj = {}
         with self.assertRaises(CheckError):
             Is(obj).not_dict
 

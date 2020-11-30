@@ -11,7 +11,7 @@ class Check:
 
     def _import_assertion_modules(self):
         ass = importlib.import_module(Check.ASSERTIONS_PACKAGE)
-        assertion_modules = list()
+        assertion_modules = []
         for _1, module_name, _2 in pkgutil.iter_modules(ass.__path__):
             assertion_modules.append(importlib.import_module(ass.__name__ + '.' + module_name))
         return assertion_modules
