@@ -24,61 +24,61 @@ class TestCollectionsAssertions(unittest.TestCase):
             pass
 
     def test_is_subset(self):
-        s = set([1, 2, 3])
-        res = Check(s).is_subset_of(set([1, 2, 3, 4, 5]))
+        s = {1, 2, 3}
+        res = Check(s).is_subset_of({1, 2, 3, 4, 5})
         self.assertIsInstance(res, Check)
         try:
-            Check(s).is_subset_of(set([7]))
+            Check(s).is_subset_of({7})
             self.fail()
         except CheckError:
             pass
 
     def test_is_not_subset(self):
-        s = set([1, 2, 3])
-        res = Check(s).is_not_subset_of(set([7]))
+        s = {1, 2, 3}
+        res = Check(s).is_not_subset_of({7})
         self.assertIsInstance(res, Check)
         try:
-            Check(s).is_not_subset_of(set([1, 2, 3, 4, 5]))
+            Check(s).is_not_subset_of({1, 2, 3, 4, 5})
             self.fail()
         except CheckError:
             pass
 
     def test_is_superset(self):
-        s = set([1, 2, 3, 4, 5])
-        res = Check(s).is_superset_of(set([1, 2, 3]))
+        s = {1, 2, 3, 4, 5}
+        res = Check(s).is_superset_of({1, 2, 3})
         self.assertIsInstance(res, Check)
         try:
-            Check(s).is_superset_of(set([7]))
+            Check(s).is_superset_of({7})
             self.fail()
         except CheckError:
             pass
 
     def test_is_not_superset(self):
-        s = set([1, 2, 3])
-        res = Check(s).is_not_superset_of(set([1, 2, 3, 4, 5]))
+        s = {1, 2, 3}
+        res = Check(s).is_not_superset_of({1, 2, 3, 4, 5})
         self.assertIsInstance(res, Check)
         try:
-            Check(s).is_not_superset_of(set([1, 2]))
+            Check(s).is_not_superset_of({1, 2})
             self.fail()
         except CheckError:
             pass
 
     def test_intersects(self):
-        s = set([1, 2, 3, 4, 5])
-        res = Check(s).intersects(set([1, 2, 3]))
+        s = {1, 2, 3, 4, 5}
+        res = Check(s).intersects({1, 2, 3})
         self.assertIsInstance(res, Check)
         try:
-            Check(s).intersects(set([7]))
+            Check(s).intersects({7})
             self.fail()
         except CheckError:
             pass
 
     def test_not_intersects(self):
-        s = set([1, 2, 3])
-        res = Check(s).not_intersects(set([7, 8, 9]))
+        s = {1, 2, 3}
+        res = Check(s).not_intersects({7, 8, 9})
         self.assertIsInstance(res, Check)
         try:
-            Check(s).not_intersects(set([1, 2]))
+            Check(s).not_intersects({1, 2})
             self.fail()
         except CheckError:
             pass

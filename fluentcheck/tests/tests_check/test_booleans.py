@@ -24,7 +24,7 @@ class TestBooleansAssertions(unittest.TestCase):
         self.falsy_values = ([], (), {}, set(), "", '',
                              range(0), 0, 0.0, 0j, None, False,
                              BooleanObject(False), BooleanByLengthObject())
-        self.truthy_values = ([1,], ('a',), {1:'one'}, set([1,1,]), "1", '2',
+        self.truthy_values = ([1,], ('a',), {1:'one'}, {1,1,}, "1", '2',
                              range(1), 1, 1.0, 1j, not None, True,
                              BooleanObject(True), BooleanByLengthObject([1,2]))
 
