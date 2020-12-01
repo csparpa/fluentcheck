@@ -14,6 +14,4 @@ from ..assertions_is.uuids import __IsUUIDs
 
 class Is(__IsBool, __IsCollections, __IsDicts, __IsEmptiness, __IsGeo,
          __IsNumbers, __IsSequences, __IsStrings, __IsTypes, __IsUUIDs):
-
-    def __init__(self, object_under_test: Any):
-        super().__init__(object_under_test)
+    pass
