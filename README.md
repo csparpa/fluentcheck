@@ -138,6 +138,8 @@ is_at_least(lower)
 is_at_most(upper)
 is_between(lower, upper)
 is_not_between(lower, upper)
+is_equal_to(number)
+is_not_equal_to(number)
 
 # Sequences
 is_empty()

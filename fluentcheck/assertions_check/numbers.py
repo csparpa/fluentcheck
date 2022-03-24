@@ -147,6 +147,23 @@ def is_at_least(check_obj, lower):
     except AssertionError as e:
         raise CheckError('{} is smaller than {}'.format(check_obj._val, lower)) from e
 
+def is_equal_to(check_obj, number):
+    check_obj.is_real()
+    Check(number).is_real()
+    try:
+        assert float(check_obj._val) == float(number)
+        return check_obj
+    except AssertionError as e:
+        raise CheckError('{} is not equal to {}'.format(check_obj._val, number)) from e
+
+def is_not_equal_to(check_obj, number):
+    check_obj.is_real()
+    Check(number).is_real()
+    try:
+        assert float(check_obj._val) != float(number)
+        return check_obj
+    except AssertionError as e:
+        raise CheckError('{} is not equal to {}'.format(check_obj._val, number)) from e
 
 def is_at_most(check_obj, upper):
     check_obj.is_real()
