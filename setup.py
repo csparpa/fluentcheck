@@ -16,8 +16,8 @@ def read(filename):
 
 
 setup(
-    name='fluentcheck',
-    version='0.2.0',
+    name='fluentassert',
+    version='0.2.1',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -27,9 +27,9 @@ setup(
     description='Fluent assertions framework for Python',
     long_description=read("README.md"),
     long_description_content_type='text/markdown',
-    url='https://github.com/csparpa/fluentcheck',
-    author='Claudio Sparpaglione',
-    author_email='csparpa@gmail.com',
+    url='https://github.com/sheikhjebran/fluentcheck',
+    author='Sheikh Jebran',
+    author_email='sheikhjebran@gmail.com',
     python_requires='>3.5.0',
     classifiers=[
         "License :: OSI Approved :: MIT License",
