@@ -104,6 +104,23 @@ def contains_char(check_obj, _char):
         raise CheckError('{} does not contain char: {}'.format(check_obj._val,
                                                                _char)) from e
 
+def same_as(check_obj, __char):
+    check_obj.is_string()
+    try:
+        assert __char == check_obj._val
+        return check_obj
+    except AssertionError as e:
+        raise CheckError('{} does not match : {}'.format(check_obj._val,
+                                                               _char)) from e
+
+def not_same_as():
+    check_obj.is_string()
+    try:
+        assert __char != check_obj._val
+        return check_obj
+    except AssertionError as e:
+        raise CheckError('{} is same as : {}'.format(check_obj._val,
+                                                               _char)) from e
 
 def not_contains_char(check_obj, _char):
     check_obj.is_string()
