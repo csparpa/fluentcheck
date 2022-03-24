@@ -139,6 +139,14 @@ class __IsStrings(IsBase):
         self.check.contains_char(char)
         return self
 
+    def same_as(self, char:str) -> "Is":
+        self.check.same_as(char)
+        return self
+
+    def not_same_as(self, char:str) -> "Is":
+        self.check.not_same_as(char)
+        return self
+        
     def not_contains_char(self, char: str) -> "Is":
         self.check.not_contains_char(char)
         return self
