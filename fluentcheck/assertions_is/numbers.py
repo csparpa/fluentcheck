@@ -86,6 +86,14 @@ class __IsNumbers(IsBase):
         self.check.is_at_least(number)
         return self
 
+    def equal_to(self,number) -> "Is":
+        self.check.is_equal_to(number)
+        return self
+
+    def not_equal_to(self,number) -> "Is":
+        self.check.is_not_equal_to(number)
+        return self
+
     def at_most(self, number) -> "Is":
         self.check.is_at_most(number)
         return self
