@@ -43,4 +43,23 @@ class TestDictsAssertions(unittest.TestCase):
         except CheckError:
             pass
 
-    
+    def test_has_pairs(self):
+        d = { 1: 'one', 2: 'two'}
+        res = Check(d).has_pairs({1: 'one'})
+        self.assertIsInstance(res, Check)
+        try:
+            Check(d).has_pairs({3: 'three'})
+            self.fail()
+        except CheckError:
+            pass
+
+    def test_has_not_pairs(self):
+        d = { 1: 'one', 2: 'two'}
+        res = Check(d).has_not_pairs({3: 'three'})
+        self.assertIsInstance(res, Check)
+        try:
+            Check(d).has_not_pairs({1: 'one'})
+            self.fail()
+        except CheckError:
+            pass
+
